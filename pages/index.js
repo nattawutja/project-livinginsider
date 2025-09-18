@@ -1,10 +1,13 @@
 import Image from "next/image";
-
+import Head from 'next/head';
 
 export default function Home() {
   return (
-    
-    <div className="min-h-screen bg-blue-100" > {/* parent ต้อง relative */}
+    <>
+      <Head>
+        <title>เว็บประกาศ หาร้านอร่อยทั่วเมือง</title>
+      </Head>
+      <div className="min-h-screen bg-blue-100" > {/* parent ต้อง relative */}
         <div className="relative w-full h-80 overflow-hidden z-40">
           <video
             autoPlay
@@ -16,6 +19,7 @@ export default function Home() {
             <source src="/town.mp4" type="video/mp4" />
           </video>
         </div>
+
         <div className="rounded-xl absolute top-52 left-1/2 transform -translate-x-1/2 -translate-y-1/2  text-black p-7 z-50 w-1/2">
           <h1 className="text-xl font-bold text-white">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
@@ -26,13 +30,13 @@ export default function Home() {
                 <li>
                   <a href="#" className="inline-block text-white hover:text-amber-500">เช่าคอนโด</a>
                 </li>
-                 <li>
+                  <li>
                   <a href="#" className="inline-block  text-white hover:text-amber-500">ขายคอนโด</a>
                 </li>
                 <li>
                   <a href="#" className="inline-block  text-white hover:text-amber-500">เช่าบ้าน</a>
                 </li>
-                 <li>
+                  <li>
                   <a href="#" className="inline-block  text-white hover:text-amber-500">ขายบ้าน</a>
                 </li>
                 <li>
@@ -43,7 +47,7 @@ export default function Home() {
 
         </div>
 
-        <div className="relative min-h-screen">
+        <div className="relative">
           <div className="bg-white rounded-xl absolute top-50 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border text-black p-7 z-50 w-1/2">
             <form className="w-full">   
                 <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -70,7 +74,36 @@ export default function Home() {
           </div>
         </div>
 
-   </div>
+        <div className="relative">
+          <div className="rounded-xl absolute top-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border text-black z-50 w-1/2 text-start">
+            <h2 className=" text-green-500">ประเภทอสังหาฯ</h2>
+          
+          </div>
+        </div>
+
+          
+        <div className="relative">
+          <div class="max-w-sm bg-white border border-gray-200 rounded-lg">
+            <Image
+              src="/cafe.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+            />
+            <div class="p-2">
+                <a href="#">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                </a>
+                <p class=" font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </>
      
   );
 }
