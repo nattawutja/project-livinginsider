@@ -82,7 +82,7 @@ export default function Home() {
         </div>
 
           
-        <div className="relative">
+        <div className="relative flex gap-5 bg-white top-52 justify-center">
           <div class="max-w-sm bg-white border border-gray-200 rounded-lg">
             <Image
               src="/cafe.jpg"
@@ -98,9 +98,27 @@ export default function Home() {
                 
             </div>
           </div>
+
+          <div class="max-w-sm bg-white border border-gray-200 rounded-lg">
+            <Image
+              src="/cafe.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+            />
+            <div class="p-2">
+                <a href="#">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+                </a>
+                <p class=" font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                
+            </div>
+          </div>
+
+
         </div>
 
-
+        
 
       </div>
     </>
