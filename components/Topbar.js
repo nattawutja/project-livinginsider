@@ -18,7 +18,7 @@ export default function TopBar(){
                             <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-full  transition duration-100 bg-green-400">Home</a>
                         </li>
                         <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a>
+                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a><span className="alert_new recommend animated heartBeat infinite">N</span>
                         </li>
                         <li>
                             <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a>
