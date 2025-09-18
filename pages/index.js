@@ -40,7 +40,7 @@ export default function Home() {
                   <a href="#" className="inline-block  text-white hover:text-amber-500">ขายบ้าน</a>
                 </li>
                 <li>
-                  <a href="#" className="inline-block  text-white hover:text-amber-500">ขายที่ดินนoo</a>
+                  <a href="#" className="inline-block  text-white hover:text-amber-500">ขายที่ดินนoooo</a>
                 </li>
             </ul>
           </div>
