@@ -11,7 +11,7 @@ export default function Home() {
         <title>เว็บประกาศ หาร้านอร่อยทั่วเมือง</title>
       </Head>
       <div className="min-h-screen bg-blue-100" > {/* parent ต้อง relative */}
-        <div className="relative z-40 w-full overflow-hidden h-80">
+        <div className="relative z-40 w-full overflow-hidden h-96">
           <video
             autoPlay
             loop
@@ -23,7 +23,7 @@ export default function Home() {
           </video>
         </div>
 
-        <div className="absolute z-40 w-1/2 text-black transform -translate-x-1/2 -translate-y-1/2 rounded-xl top-52 left-1/2 p-7">
+        <div className="absolute z-40 w-1/2 text-black transform -translate-x-1/2 -translate-y-1/2 rounded-xl top-64 left-1/2 p-7">
           <h1 className="text-xl font-bold text-white">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col gap-4 mt-4 rounded-lg font-sm md:flex-row">
@@ -51,11 +51,47 @@ export default function Home() {
         </div>
 
         <div className="relative">
-          <div className="absolute z-40 w-1/2 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border rounded-xl top-50 left-1/2 p-7">
+          <div className="absolute z-40 w-1/2 p-4 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border rounded-xl top-50 left-1/2">
+            <nav className="">
+              <ul className="flex flex-row justify-start text-xs rounded-lg md:flex-row">
+                <li>
+                  <a href="#" className="inline-block px-3 py-2 text-black transition duration-100 rounded-full hover:text-white hover:bg-green-400">หน้าแรก</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li className="ms-2">
+                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400 ">รายการ ขาย เช่า</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li className="mt-2">
+                  <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">ประกาศแนะนำ <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li>
+                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">ขายราคาทุน</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li>
+                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">AgentClub</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li className="mt-2">
+                  <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">Looking <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                </li>
+              </ul>
+            </nav>
             
-          </div>
-          <div className="absolute z-40 w-1/2 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border rounded-xl top-50 left-1/2 p-7">
-            <form className="w-full">   
+
+            <form className="w-full mt-3">   
                 <div className="relative">
                   <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                     
@@ -74,15 +110,15 @@ export default function Home() {
           </div>
         </div>
        
-          <div className="relative flex justify-between p-4 top-52">
-            <div className="w-1/2 p-4">
-              <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> <FaHotjar className="text-emerald-500" /> โครงการเปิดใหม่</label>
-              <label className="flex justify-center pr-4 text-sm text-black">สำรวจโครงการเปิดใหม่ที่น่าสนใจกันเลย</label>
-            </div>
-            <div className="w-1/2 p-4 text-center">
-              <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูโครงการทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
-            </div>
+        <div className="relative flex justify-between p-4 top-52">
+          <div className="w-1/2 p-4">
+            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> <FaHotjar className="text-emerald-500" /> โครงการเปิดใหม่</label>
+            <label className="flex justify-center pr-4 text-sm text-black">สำรวจโครงการเปิดใหม่ที่น่าสนใจกันเลย</label>
           </div>
+          <div className="w-1/2 p-4 text-center">
+            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูโครงการทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
+          </div>
+        </div>
           
         <div className="relative flex justify-center bg-blue-100 top-48">
            
@@ -153,11 +189,7 @@ export default function Home() {
             </div>
 
         </div>
-
-        
-        <footer className="z-50 w-full py-3 text-sm text-center text-gray-600 bg-black border-t">
-          &copy; {new Date().getFullYear()} Project Livinginsider
-        </footer>
+       
       </div>
     </>
      
