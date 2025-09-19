@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { FaHome,FaChevronDown,FaHistory,FaRegBell,FaRegHeart,FaPlusCircle } from 'react-icons/fa';
 
 export default function TopBar(){
     return(
-        <nav className="fixed top-0 left-0 w-full z-50">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <nav className="fixed top-0 left-0 z-50 w-full">
+            <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
                 <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Image
                 src="/heineken1.png"
@@ -13,24 +14,97 @@ export default function TopBar(){
                 />
                 </a>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul className="text-xs flex flex-col mt-4 rounded-lg md:flex-row">
+                    <ul className="flex flex-col mt-4 rounded-lg text-md md:flex-row">
                         <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-full  transition duration-100 bg-green-400">Home</a>
+                           <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100 ">เข้าสู่ระบบ</a>
+                        </li>
+                        <li className="mt-2">
+                        /
                         </li>
                         <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a><span className="alert_new recommend animated heartBeat infinite">N</span>
+                            <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100 ">สมัครสมาชิก</a>
+                        </li>
+                        <li className="mt-3">
+                            <div className="w-px h-4 bg-white"></div>
+                        </li>
+                        <li className="mt-2 ms-2">
+                            <a href="#" className="flex-col items-center text-xl"><FaHome /></a>
+                        </li>
+                        <li className="mt-2 ms-3">
+                            <a href="#" className="flex-col items-center text-xl"><FaRegHeart /></a>
+                        </li>
+                        <li className="mt-3 ms-3">
+                            <div className="w-px h-4 bg-white"></div>
+                        </li>
+                        <li className="mt-2 ms-2">
+                            <a href="#" className="flex-col items-center text-xl"><FaRegBell /></a>
+                        </li>
+                        <li className="mt-2 ms-3">
+                            <a href="#" className="flex-col items-center text-xl"><FaHistory /></a>
+                        </li>
+                        <li className="mt-3 ms-3">
+                            <div className="w-px h-4 bg-white"></div>
+                        </li>
+
+                        <li>
+
+                            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" className="flex px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100" type="button"> 
+                            <Image
+                            src="/Thailand-flag1.png"
+                            alt="My Photo"
+                            width={30}
+                            height={30}
+                            className="me-1"
+                            />
+                            <FaChevronDown className="mt-1"/>
+                            </button>
+
+                            <div id="dropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                </li>
+                               
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                           <a href="#" className="inline-block px-5 py-2 text-white hover:text-emerald-500 ">คู่มือการใช้งาน</a>
+                        </li>
+                         <li className="mt-3">
+                            <div className="w-px h-4 bg-white"></div>
                         </li>
                         <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a>
-                        </li>
-                        <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a>
-                        </li>
-                        <li>
-                            <a href="#" className="px-5 py-2 inline-block  text-white hover:text-black rounded-md hover:rounded-full hover:bg-teal-100 transition duration-500">about</a>
+                           <a href="#" className="inline-block px-5 py-2 text-white hover:text-emerald-500">ติดต่อเรา</a>
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div className="w-full md:block md:w-auto">
+                <ul className="flex flex-row justify-center text-xs rounded-lg md:flex-row">
+                    <li>
+                        <a href="#" className="inline-block px-3 py-2 text-white transition duration-100 bg-green-400 rounded-full hover:text-black">หน้าแรก</a>
+                    </li>
+                    <li className="ms-2">
+                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100 ">รายการ ขาย เช่า</a>
+                    </li>
+                    <li className="mt-2">
+                        <a href="#" className="relative px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">ประกาศแนะนำ <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                    </li>
+                    <li>
+                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">ขายราคาทุน</a>
+                    </li>
+                    <li>
+                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">AgentClub</a>
+                    </li>
+                    <li className="mt-2">
+                        <a href="#" className="relative px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">Looking <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                    </li>
+                    <li className="ms-3">
+                        <a href="#" className="flex gap-1 px-5 py-2 text-white transition duration-100 bg-orange-400 rounded-full hover:bg-orange-800"><FaPlusCircle className="text-xs"/>   ลงประกาศ</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     );

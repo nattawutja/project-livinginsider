@@ -5,7 +5,19 @@ module.exports = {
     "./components/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        heartbeat: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '25%': { transform: 'scale(1.2)' },
+          '50%': { transform: 'scale(1)' },
+          '75%': { transform: 'scale(1.2)' },
+        },
+      },
+      animation: {
+        heartbeat: 'heartbeat 2s infinite',
+      },
+    },
   },
   plugins: [],
 }
