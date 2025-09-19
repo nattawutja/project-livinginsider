@@ -55,37 +55,37 @@ export default function Home() {
             <nav className="">
               <ul className="flex flex-row justify-start text-xs rounded-lg md:flex-row">
                 <li>
-                  <a href="#" className="inline-block px-3 py-2 text-black transition duration-100 rounded-full hover:text-white hover:bg-green-400">หน้าแรก</a>
+                  <a href="#" className="flex gap-2 px-3 py-2 text-gray-400 transition duration-100 rounded-full hover:text-white hover:bg-green-400"><FaSearch className="text-green-400 hover:text-white"   />หน้าแรก</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li className="ms-2">
-                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400 ">รายการ ขาย เช่า</a>
-                </li>
-                <li className="mt-1 ms-3">
-                  <div className="w-px h-5 bg-gray-200"></div>
-                </li>
-                <li className="mt-2">
-                  <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">ประกาศแนะนำ <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400 "><FaSearch className="text-green-400 hover:text-white"  />รายการ ขาย เช่า</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">ขายราคาทุน</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400 hover:text-white"  />ขายราคาทุน</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">AgentClub</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400"  />ขายราคาทุน</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
-                <li className="mt-2">
-                  <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400">Looking <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
+                <li>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400"  />AgentClub</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400 transition-colors duration-500 group-hover:text-white" /> AgentClub</a>
                 </li>
               </ul>
             </nav>
