@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from 'next/head';
-import { FaHotjar,FaChevronRight,FaSearch } from 'react-icons/fa';
+import { FaHotjar,FaChevronRight,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
@@ -23,7 +23,7 @@ export default function Home() {
           </video>
         </div>
 
-        <div className="absolute z-40 w-1/2 text-black transform -translate-x-1/2 -translate-y-1/2 rounded-xl top-64 left-1/2 p-7">
+        <div className="absolute z-40 w-2/2 text-black transform -translate-x-1/2 -translate-y-1/2 rounded-xl top-64 left-1/2 p-7">
           <h1 className="text-xl font-bold text-white">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col gap-4 mt-4 rounded-lg font-sm md:flex-row">
@@ -51,41 +51,41 @@ export default function Home() {
         </div>
 
         <div className="relative">
-          <div className="absolute z-40 w-1/2 p-4 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border rounded-xl top-50 left-1/2">
+          <div className="absolute z-40 w-3/4 p-4 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border rounded-xl top-50 left-1/2">
             <nav className="">
-              <ul className="flex flex-row justify-start text-xs rounded-lg md:flex-row">
+              <ul className="flex flex-row justify-start text-md rounded-lg md:flex-row">
                 <li>
-                  <a href="#" className="flex gap-2 px-3 py-2 text-gray-400 transition duration-100 rounded-full hover:text-white hover:bg-green-400"><FaSearch className="text-green-400 hover:text-white"   />หน้าแรก</a>
-                </li>
-                <li className="mt-1 ms-3">
-                  <div className="w-px h-5 bg-gray-200"></div>
-                </li>
-                <li className="ms-2">
-                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400 "><FaSearch className="text-green-400 hover:text-white"  />รายการ ขาย เช่า</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaRegBookmark className="text-green-400 transition-colors duration-500 group-hover:text-white" /> สถานที่น่าสนใจ</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400 hover:text-white"  />ขายราคาทุน</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaBookReader className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านหนังสือ</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400"  />ขายราคาทุน</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaShoppingBag className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ช้อปปิ้ง</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md hover:text-white hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400"  />AgentClub</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaShoppingBasket className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ถนนคนเดิน</a>
                 </li>
                 <li className="mt-1 ms-3">
                   <div className="w-px h-5 bg-gray-200"></div>
                 </li>
                 <li>
-                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaSearch className="text-green-400 transition-colors duration-500 group-hover:text-white" /> AgentClub</a>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaBeer className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านนั่งชิว</a>
+                </li>
+                <li className="mt-1 ms-3">
+                  <div className="w-px h-5 bg-gray-200"></div>
+                </li>
+                <li>
+                  <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400"><FaDumbbell className="text-green-400 transition-colors duration-500 group-hover:text-white" /> AgentClub</a>
                 </li>
               </ul>
             </nav>
