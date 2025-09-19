@@ -61,7 +61,7 @@ export default function Home() {
                     
                   </div>
                   <input type="search" className="focus:shadow-[0_0_10px_2px_#d3dff5] block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl focus:outline-none" placeholder="ค้นหาข้อมูล" required />
-                  <button type="submit" className="flex gap-2 text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><FaSearch className="mt-1"  />ค้นหา</button>
+                  <button type="submit" className="flex gap-2 text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800  rounded-2xl text-sm px-4 py-2"><FaSearch className="mt-1"  />ค้นหา</button>
                 </div>
             </form>
           </div>
@@ -155,7 +155,9 @@ export default function Home() {
         </div>
 
         
-
+        <footer className="z-50 w-full py-3 text-sm text-center text-gray-600 bg-black border-t">
+          &copy; {new Date().getFullYear()} Project Livinginsider
+        </footer>
       </div>
     </>
      
