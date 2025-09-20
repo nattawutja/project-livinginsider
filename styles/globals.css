@@ -48,3 +48,18 @@ body {
   transform-origin: 100% 100%;
   background-color: #F07818; /* the main color  */
 }
+
+.bg-living {
+  background-color:#f0f8ff;
+}
+
+/* สีตอน hover */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #13b99a; /* สีไอคอนตอน hover */
+}
+
+
+.swiper-navigation-icon::after{
+  color: #13b99a; /* สีไอคอนตอน hover */
+}

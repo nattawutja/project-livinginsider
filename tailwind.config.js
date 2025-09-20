@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'bg-living': '#f0f8ff', // ตั้งชื่อสีเอง
+        'bg-footer': '#e8f9f4'
+      },
       keyframes: {
         heartbeat: {
           '0%, 100%': { transform: 'scale(1)' },
