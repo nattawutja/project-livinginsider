@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from 'next/head';
-import { FaStore,FaHome,FaBuilding,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell } from 'react-icons/fa';
+import { FaStore,FaHome,FaBuilding,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell , FaMapMarked, FaTimesCircle, FaMousePointer, FaTimes, FaClock, FaMouse, FaTable, FaParking, FaBath, FaTabletAlt, FaChair, FaSpaceShuttle, FaDrawPolygon, FaVectorSquare, FaMapPin } from 'react-icons/fa';
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,6 +20,7 @@ import { useRef,useState } from "react";
 export default function Home() {
 
   const scrollRef = useRef(null);
+  const scrollRefMenu = useRef(null);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -30,22 +31,30 @@ export default function Home() {
     }
   };
 
+  
+
+  const scrollMenu = (direction) => {
+    if (scrollRefMenu.current) {
+      console.log(scrollRefMenu.current);
+      const { scrollLeft, clientWidth } = scrollRefMenu.current;
+      const scrollAmount = direction === "left" ? -clientWidth / 2 : clientWidth / 2;
+      scrollRefMenu.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+
   const categories = [
-    { icon: <FaBuilding />, label: "คอนโด" },
-    { icon: <FaHome />, label: "บ้าน" },
-    { icon: <FaHome />, label: "ทาวน์โฮม" },
-    { icon: <FaHome />, label: "บ้านแฝด" },
-    { icon: <FaStore />, label: "ที่ดิน" },
-    { icon: <FaBuilding />, label: "ตึกแถว" },
-    { icon: <FaBuilding />, label: "สำนักงาน" },
-    { icon: <FaHome />, label: "โฮมออฟฟิศ" },
-    { icon: <FaStore />, label: "ร้านค้า" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
-    { icon: <FaBuilding />, label: "โชว์รูม" },
+    { icon: "/cafe.png", label: "โฮมคาเฟ่" },
+    { icon: "/river.png", label: "ร้านอาหารติดแม่น้ำ" },
+    { icon: "/boat.png", label: "ล่องเรือ" },
+    { icon: "/pet-shop.png", label: "เพ็ทคาเฟ่" },
+    { icon: "/menu.png", label: "ภัตตาคาร" },
+    { icon: "/building.png", label: "สตรีทฟู๊ด" },
+    { icon: "/panna-cotta.png", label: "ร้านขนมหวาน" },
+    { icon: "/bento.png", label: "ร้านอาหารญี่ปุ่น" },
+    { icon: "/yakiniku.png", label: "ร้านปิ้งย่าง" },
+    { icon: "/appartment.png", label: "ร้านอาหารติดคอนโด" },
+    { icon: "/vegetables.png", label: "ร้านอาหารสุขภาพ" },
   ];
 
   const locations = [
@@ -58,6 +67,46 @@ export default function Home() {
     { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
     { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
     { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
+  ];
+
+  const locationsNotify = [
+    { title: "ร้านอาหารใหม่", img: "/ร้านอาหารใหม่.jpg" },
+    { title: "ใกล้ร้านอาหารสัตว์",img: "/ใกล้ร้านอาหารสัตว์.jpg" },
+    { title: "ใกล้ภูเขา", img: "/ใกล้ภูเขา.jpg" },
+    { title: "ใกล้คอนโด",  img: "/ใกล้คอนโด.jpg" },
+    { title: "ใกล้ที่ท่องเที่ยว", img: "/ใกล้ที่ท่องเที่ยว.jpg" },
+    { title: "ใกล้โรงพยาบาล", img: "/ใกล้โรงพยาบาล.jpg" },
+    { title: "ใกล้น้ำตก", img: "/ใกล้น้ำตก.jpg" },
+    { title: "ใกล้ทะเล", img: "/ใกล้ทะเล.jpg" },
+    { title: "ใกล้วัด", img: "/ใกล้วัด.jpg" },
+    { title: "ใกล้มหาลัย", img: "/ใกล้มหาลัย.jpg" }
+  ];
+
+    const locationsNotifyHome = [
+    { title: "บ้านใกล้ร้านอาหาร", img: "/บ้านใกล้ร้านอาหาร.jpg" },
+    { title: "บ้านมือสองใกล้ร้านอาหาร",img: "/บ้านมือสอง.jpg" },
+    { title: "บ้านใกล้มหาลัย", img: "/บ้านใกล้หมาลัย.jpg" },
+    { title: "บ้านใกล้รถไฟฟ้า", img: "/บ้านใกล้รถไฟฟ้า.jpg" },
+
+  ];
+
+
+  
+  const food = [
+    { title: "พระราม 9", subtitle: "Bon Chon", img: "/bonchon.png" },
+    { title: "รัชดา ห้วยขวาง", subtitle: "Yayoi", img: "/yayoi.png" },
+    { title: "สาทร", subtitle: "KFC", img: "/kfc.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "Mc Donald", img: "/mcdonal.png" },
+    { title: "หมอชิต จตุจักร", subtitle: "Chester Grill", img: "/chester.png" },
+    { title: "หมอชิต จตุจักร", subtitle: "Momo Paradise", img: "/momo.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "Copper Buffet", img: "/copper.png" },
+    { title: "หมอชิต จตุจักร", subtitle: "Burger King", img: "/burgerking.png" },
+    { title: "หมอชิต จตุจักร", subtitle: "Tensai Buffet", img: "/tensai.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "SanteFe", img: "/santafe.png" },
+    { title: "หมอชิต จตุจักร", subtitle: "นิตยาไก่ย่าง", img: "/นิตยา.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "Tenjo", img: "/tenjo.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "Sushiro", img: "/sushiro.jpg" },
+    { title: "หมอชิต จตุจักร", subtitle: "Subway", img: "/subway.png" },
   ];
 
   return (
@@ -79,9 +128,9 @@ export default function Home() {
         </div>
 
         <div className="absolute z-40 text-black transform -translate-x-1/2 -translate-y-1/2 w-2/2 rounded-xl top-64 left-1/2 p-7">
-          <h1 className="text-xl font-bold text-white">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
+          <h1 className="text-xl font-bold text-white whitespace-nowrap">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul className="flex flex-col gap-4 mt-4 rounded-lg font-sm md:flex-row">
+            <ul className="flex flex-col gap-4 mt-4 rounded-lg font-sm text-md md:flex-row">
                 <li>
                   <a href="#" className="inline-block text-white hover:text-amber-500">คอนโดหรู</a>
                 </li>
@@ -111,37 +160,37 @@ export default function Home() {
               <nav className="">
                 <ul className="flex flex-row justify-start p-3 rounded-lg lg:overflow-x-auto text-md md:flex-row lg:whitespace-nowrap md:overflow-x-auto md:whitespace-nowrap">
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaRegBookmark className="text-green-400 transition-colors duration-500 group-hover:text-white" /> สถานที่น่าสนใจ</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaRegBookmark className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> สถานที่น่าสนใจ</a>
                   </li>
                   <li className="mt-1 ms-3">
                     <div className="w-px h-5 bg-gray-200"></div>
                   </li>
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaBookReader className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านหนังสือ</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaBookReader className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านหนังสือ</a>
                   </li>
                   <li className="mt-1 ms-3">
                     <div className="w-px h-5 bg-gray-200"></div>
                   </li>
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaShoppingBag className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ช้อปปิ้ง</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaShoppingBag className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> ช้อปปิ้ง</a>
                   </li>
                   <li className="mt-1 ms-3">
                     <div className="w-px h-5 bg-gray-200"></div>
                   </li>
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaShoppingBasket className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ถนนคนเดิน</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaShoppingBasket className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> ถนนคนเดิน</a>
                   </li>
                   <li className="mt-1 ms-3">
                     <div className="w-px h-5 bg-gray-200"></div>
                   </li>
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaBeer className="text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านนั่งชิว</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaBeer className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> ร้านนั่งชิว</a>
                   </li>
                   <li className="mt-1 ms-3">
                     <div className="w-px h-5 bg-gray-200"></div>
                   </li>
                   <li>
-                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaDumbbell className="text-green-400 transition-colors duration-500 group-hover:text-white" /> AgentClub</a>
+                    <a href="#" className="flex gap-2 px-5 py-2 text-gray-400 transition duration-500 rounded-md group hover:rounded-full hover:bg-green-400 hover:text-white"><FaDumbbell className="mt-1 text-green-400 transition-colors duration-500 group-hover:text-white" /> ฟิตเนส</a>
                   </li>
             
                 </ul>
@@ -149,22 +198,22 @@ export default function Home() {
             </div>
 
             <form className="w-full mt-3">   
-                <div className="relative">
-                  <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
-                    
-                  </div>
-                  <input type="search" className="focus:shadow-[0_0_10px_2px_#d3dff5] block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl focus:outline-none" placeholder="ค้นหาข้อมูล" required />
-                  <button type="submit" className="flex gap-2 text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800  rounded-2xl text-sm px-4 py-2"><FaSearch className="mt-1"  />ค้นหา</button>
+              <div className="relative">
+                <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                  
                 </div>
+                <input type="search" className="focus:shadow-[0_0_10px_2px_#d3dff5] block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl focus:outline-none" placeholder="ค้นหาข้อมูล / ร้านอาหาร / ที่เที่ยว/ สถานที่ออกกำลังกาย" required />
+                <button type="submit" className="flex gap-2 text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800  rounded-2xl text-sm px-4 py-2"><FaSearch className="mt-1"  />ค้นหา</button>
+              </div>
             </form>
           </div>
         </div>
 
       
-
+      {/* ประเภทร้านอาหาร */}
         <div className="relative w-full h-72 bg-gradient-to-b from-bg-living to-white">
           <div className="absolute z-40 w-1/2 text-center top-28 right-1/2">
-            <h2 className="text-green-500 ">ประเภทอสังหาฯ</h2>
+            <h2 className="text-green-500 ">ประเภทร้านอาหาร</h2>
           </div>
           <div className="absolute z-40 w-1/2 text-center text-black top-28 left-1/2">
             <div className="relative flex items-center justify-center gap-2">
@@ -187,24 +236,32 @@ export default function Home() {
 
             <div
               ref={scrollRef}
-              className="absolute flex w-full max-w-4xl gap-4 px-4 overflow-hidden top-40 left-1/4"
+              className="absolute flex w-full max-w-4xl gap-4 p-2 px-4 overflow-hidden top-40 left-1/4"
             >
               {categories.map((item, i) => (
-                <div key={i} className="flex flex-col items-center">
-                  <div className="flex items-center justify-center w-20 h-20 bg-white border rounded-full shadow cursor-pointer hover:bg-green-100 hover:-translate-y-2">
-                    <div className="text-green-500 text-md">{item.icon}</div>
+                <div key={i} className="flex flex-col items-center transition duration-300 cursor-pointer hover:scale-110">
+                 <div className="flex items-center justify-center w-20 h-20 gap-3 bg-white border rounded-full shadow ">
+                    <Image
+                      src={item.icon}
+                      alt="My Photo"
+                      width={200}
+                      height={40}
+                      className="border-2 border-teal-400 border-solid rounded-full"
+                    />
                   </div>
-                  <p className="mt-2 text-sm text-green-500">{item.label}</p>
+                  <p className="mt-2 text-sm text-green-500 whitespace-nowrap">{item.label}</p>
                 </div>
               ))}
             </div>
 
 
         </div>
-       
+       {/* ประเภทร้านอาหาร */}
+
+        {/* ร้านอาหารยอดนิยม */}
         <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
-            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> ทำเลยอดนิยม</label>
+            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> ร้านอาหารยอดนิยม</label>
           </div>
           <div className="w-1/2 p-4 text-center">
             <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ทำเลอื่นๆ  <FaChevronRight className="text-blue-500" /></a>
@@ -244,117 +301,228 @@ export default function Home() {
           </Swiper>
           </div>
         </div>
+        {/* ร้านอาหารยอดนิยม */}
 
-            
+
+
+        {/* ร้านอาหารแบรนด์ต่างๆ */}
         <div className="relative w-full bg-white h-72">
           <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
-            <h2 className="text-green-500 ">ดูโครงการใหม่จาก</h2>
+            <h2 className="text-green-500 ">ดูเมนูใหม่จาก</h2>
           </div>
           <div className="absolute z-40 w-1/2 text-center text-black top-3 left-1/2">
             <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูผู้พัฒนาทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
           </div>
 
+
+
+                
+            <div className="absolute z-40 w-1/2 text-center text-black top-28 left-1/2">
+              <div className="relative flex items-center justify-center">
+                
+
+                <button
+                  onClick={() => scrollMenu("right")}
+                  className="p-2 text-gray-500 bg-white rounded-full"
+                >
+                  <FaChevronRight />
+                </button>
+              </div>
+            </div>
+
+            <div className="absolute z-40 w-1/2 text-center text-black top-28 right-1/2">
+              <div className="relative flex items-center justify-center">
+                
+
+                <button
+                  onClick={() => scrollMenu("left")}
+                  className="p-2 text-gray-500 bg-white rounded-full"
+                >
+                  <FaChevronLeft />
+                </button>
+              </div>
+            </div>
+
             <div
-              className="absolute flex w-full max-w-4xl gap-4 px-4 overflow-hidden top-20 left-1/4"
+              ref={scrollRefMenu}
+              className="absolute flex w-full max-w-4xl gap-4 p-4 px-5 overflow-hidden top-20 left-1/4"
             >
-              {categories.map((item, i) => (
-                <div key={i} className="flex flex-col items-center">
-                  <div className="flex items-center justify-center w-20 h-20 bg-white border rounded-full shadow cursor-pointer hover:bg-green-100 hover:-translate-y-2">
-                    <div className="text-green-500 text-md">{item.icon}</div>
+              {food.map((item, i) => (
+                <div key={i} className="flex flex-col items-center transition duration-300 cursor-pointer hover:scale-110">
+                  <div className="flex items-center justify-center w-20 h-20 gap-3 bg-white border rounded-full shadow">
+                    <Image
+                      src={item.img}
+                      alt="My Photo"
+                      width={500}
+                      height={40}
+                      className="border-2 border-teal-400 border-solid rounded-full"
+                    />
                   </div>
-                  <p className="mt-2 text-sm text-green-500">{item.label}</p>
+                  <p className="mt-2 text-sm text-gray-500 whitespace-nowrap">{item.subtitle}</p>
                 </div>
               ))}
-            </div>
+          </div>
 
 
         </div>
+        {/* ร้านอาหารแบรนด์ต่างๆ */}
 
 
+        {/* ร้านอาหารเปิดใหม่ */}
         <div className="relative flex justify-between p-2 bg-living">
           <div className="w-1/2 p-4">
-            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> <FaHotjar className="text-emerald-500" /> โครงการเปิดใหม่</label>
-            <label className="flex justify-center pr-4 text-sm text-black">สำรวจโครงการเปิดใหม่ที่น่าสนใจกันเลย</label>
+            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> <FaHotjar className="text-emerald-500" /> ร้านอาหารเปิดใหม่</label>
+            <label className="flex justify-center pr-4 text-sm text-black">สำรวจร้านอาหารเปิดใหม่ที่น่าสนใจกันเลย</label>
           </div>
           <div className="w-1/2 p-4 text-center">
-            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูโครงการทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
+            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูร้านอาหารทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
           </div>
         </div>
           
         <div className="relative flex justify-center bg-living">
            
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
+          <div className="p-5">
+            <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
 
-                <div className="max-w-sm bg-white rounded-lg">
-                
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                  />
-                  <div className="p-2 ">
-                    <a href="#">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                    </a>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    
+              <div className="max-w-sm bg-white rounded-lg">
+              
+                <Image
+                  src="/แคสเทลโล.jpg"
+                  alt="My Photo"
+                        width={500}
+                  height={100}
+                  className="border rounded-lg"
+                />
+                <div className="p-2 ">
+                  <div className="p-4 bg-white">
+                    <p className="text-lg font-bold text-black">Castello Di Bellagio Pattaya</p>
+                    <div className="bg-white">
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 9 9 ตำบล นาจอมเทียน อำเภอสัตหีบ ชลบุรี 20250</p>
+                    </div>
+                  </div>   
+                  
+                  <div className="flex justify-center gap-2 p-3 bg-white border-y">
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ที่จอดรถ
+                      <p className="font-bold text-emerald-400">มี</p>
+                    </div>
+                    <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">คะแนนรีวิว
+                      <p className="font-bold text-emerald-400">10 / 10</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ชั้น
+                      <p className="font-bold text-emerald-400">2</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
+                      <p className="font-bold text-emerald-400">ค่อนข้างยาก</p>
+                    </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
-            
+          </div>
+          
 
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
+          <div className="p-5">
+            <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
 
-                <div className="max-w-sm bg-white rounded-lg">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
+              <div className="max-w-sm bg-white rounded-lg">
+              
+                <Image
+                  src="/chocolateview1.jpg"
+                  alt="My Photo"
+                  width={500}
+                  height={150}
+                  className="border rounded-lg"
+
+                />
+                <div className="p-2 ">
+                  <div className="p-4 bg-white">
+                    <p className="text-lg font-bold text-black">ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                    <div className="bg-white">
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                    </div>
+                  </div>   
+                  
+                  <div className="flex justify-center gap-2 p-3 bg-white border-y">
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ที่จอดรถ
+                      <p className="font-bold text-emerald-400">มี</p>
+                    </div>
+                    <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">คะแนนรีวิว
+                      <p className="font-bold text-emerald-400">9 / 10</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ชั้น
+                      <p className="font-bold text-emerald-400">1</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
+                      <p className="font-bold text-emerald-400">ง่าย สะดวก</p>
+                    </div>
                   </div>
+
+                  
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
-                <div className="max-w-sm bg-white">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
+          <div className="p-5">
+            <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
+
+              <div className="max-w-sm bg-white rounded-lg">
+              
+                <Image
+                  src="/3บ้าน.jpg"
+                  alt="My Photo"
+                  width={500}
+                  height={100}
+                  className="border rounded-lg"
+                />
+                <div className="p-2 ">
+                  <div className="p-4 bg-white">
+                    <p className="text-lg font-bold text-black">3 บ้าน 8 บ้าน</p>
+                    <div className="bg-white">
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 163/1 ถนน มาเจริญ แขวงหนองค้างพลู เขตหนองแขม กรุงเทพมหานคร 10160</p>
+                    </div>
+                  </div>   
+                  
+                  <div className="flex justify-center gap-2 p-3 bg-white border-y">
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ที่จอดรถ
+                      <p className="font-bold text-emerald-400">มี</p>
+                    </div>
+                    <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">คะแนนรีวิว
+                      <p className="font-bold text-emerald-400">8.5 / 10</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ชั้น
+                      <p className="font-bold text-emerald-400">1</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
+                      <p className="font-bold text-emerald-400">สะดวก</p>
+                    </div>
                   </div>
+                  
                 </div>
               </div>
             </div>
+          </div>
 
         </div>
+        {/* ร้านอาหารเปิดใหม่ */}
        
-
+        {/* ไอคอนรถไฟฟ้า */}
         <div className="relative w-full bg-white h-72">
           <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
-            <h2 className="font-bold text-green-500 text-md ">อสังหาฯ ใกล้รถไฟฟ้า</h2>
+            <h2 className="font-bold text-green-500 text-md ">ร้านอาหาร ใกล้รถไฟฟ้า</h2>
           </div>
           <div className="absolute z-40 w-1/2 text-center text-black top-3 left-1/2">
             <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">สถานีทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
@@ -529,7 +697,7 @@ export default function Home() {
 
 
         </div>
-
+        {/* ไอคอนรถไฟฟ้า */}
 
         <div className="relative w-full bg-white h-72">
           <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
@@ -537,14 +705,14 @@ export default function Home() {
           </div>
           <div className="absolute z-40 w-1/2 text-center text-black top-3 left-1/2">
           </div>
-          <div class="absolute w-64 h-40 z-50">
-            <div class="absolute top-2 left-0 bg-orange-500 text-white px-3 py-1 text-xs font-semibold transform -rotate-45 origin-top-left">
+          <div className="absolute z-50 w-64 h-40">
+            <div className="absolute left-0 px-3 py-1 text-xs font-semibold text-white origin-top-left transform -rotate-45 bg-orange-500 top-2">
               โครงการใหม่
             </div>
 
-            <div class="absolute inset-0 bg-blue-900 text-white p-4 flex flex-col justify-center z-10">
-              <h3 class="text-lg font-bold">คอนโดใหม่</h3>
-              <p class="text-sm">รวมประกาศขายคอนโด โครงการใหม่ มือหนึ่ง</p>
+            <div className="absolute inset-0 z-10 flex flex-col justify-center p-4 text-white bg-blue-900">
+              <h3 className="text-lg font-bold">คอนโดใหม่</h3>
+              <p className="text-sm">รวมประกาศขายคอนโด โครงการใหม่ มือหนึ่ง</p>
             </div>
 
             <Image
@@ -561,17 +729,17 @@ export default function Home() {
           <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
             <h2 className="font-bold text-green-500 text-md">ค้นหาจากทำเลที่คุณต้องการ</h2>
             <div className="absolute flex gap-4 -translate-x-2/2 left-1/2 top-10">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
+              <div className="relative overflow-hidden bg-white rounded-lg cursor-pointer h-80 w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/property_near_by_index.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
                 />
               </div>
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
+              <div className="relative overflow-hidden bg-white rounded-lg cursor-pointer h-80 w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/search_by_location_index.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
@@ -581,35 +749,31 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
-                <Image 
-                  src="/cafe.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
+
+        <div className="relative flex items-center justify-center w-1/2 bg-white cursor-pointer h-72">
+
+            <Image
+              src="/ธนาคารออมสิน.jpg"
+              alt="My Photo"
+              fill
+              className="object-cover"
+            />
         </div>
 
         <div className="relative w-full bg-white h-96">
           <div className="absolute z-40 w-1/2 text-center right-1/2">
             <div className="absolute flex gap-4 -translate-x-2/2 left-1/2">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
+              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/51098_32730.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
                 />
               </div>
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
+              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/57535_95128.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
@@ -624,7 +788,30 @@ export default function Home() {
             <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
               <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/bigsale.jpg" 
+                  alt="My Photo" 
+                  fill 
+                  className="object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative w-full bg-white h-96">
+          <div className="absolute z-40 w-1/2 text-center right-1/2">
+            <div className="absolute flex gap-4 -translate-x-2/2 left-1/2">
+              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
+                <Image 
+                  src="/2199.jpg" 
+                  alt="My Photo" 
+                  fill 
+                  className="object-cover rounded-lg"
+                />
+              </div>
+              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
+                <Image 
+                  src="/award.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
@@ -639,7 +826,7 @@ export default function Home() {
             <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
               <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/condoandhome.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
@@ -654,7 +841,22 @@ export default function Home() {
             <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
               <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
                 <Image 
-                  src="/cafe.jpg" 
+                  src="/trueonline.jpg" 
+                  alt="My Photo" 
+                  fill 
+                  className="object-cover rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative w-full bg-white h-96">
+          <div className="absolute z-40 w-1/2 text-center right-1/2">
+            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
+              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
+                <Image 
+                  src="/emoji.jpg" 
                   alt="My Photo" 
                   fill 
                   className="object-cover rounded-lg"
@@ -673,102 +875,135 @@ export default function Home() {
           </div>
         </div>
           
+        {/* ประกาศล่าสุด */}
         <div className="relative flex justify-center bg-white">
            
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
+          <div className="p-2">
+            <div className="p-2 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
 
-                <div className="max-w-sm bg-white rounded-lg">
+              <div className="bg-white rounded-lg ">
+              
+                <Image
+                  src="/แคสเทลโล.jpg"
+                  alt="My Photo"
+                  width={300}
+                  height={100}
+                  className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
+                />
+                <div className="p-2 bg-white">
+                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="flex gap-3 mt-2 bg-white">
+                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
+                  </div>
+                </div> 
+                <div className="p-4 bg-white">
+                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <div className="flex justify-between bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
+                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
+                  </div>
+                </div>
                 
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                  />
-                  <div className="p-2 ">
-                    <a href="#">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                    </a>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    
+              </div>
+
+              
+
+            </div>
+          </div>
+          
+          <div className="p-2">
+            <div className="p-2 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
+
+              <div className="bg-white rounded-lg ">
+              
+                <Image
+                  src="/แคสเทลโล.jpg"
+                  alt="My Photo"
+                  width={300}
+                  height={100}
+                  className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
+                />
+                <div className="p-2 bg-white">
+                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="flex gap-3 mt-2 bg-white">
+                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
+                  </div>
+                </div> 
+                <div className="p-4 bg-white">
+                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <div className="flex justify-between bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
+                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
                   </div>
                 </div>
+                
               </div>
+
+              
+
             </div>
-            
+          </div>
 
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
+          <div className="p-2">
+            <div className="p-2 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
 
-                <div className="max-w-sm bg-white rounded-lg">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
+              <div className="bg-white rounded-lg ">
+              
+                <Image
+                  src="/แคสเทลโล.jpg"
+                  alt="My Photo"
+                  width={300}
+                  height={100}
+                  className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
+                />
+                <div className="p-2 bg-white">
+                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="mt-2 bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                  </div>
+                  <div className="flex gap-3 mt-2 bg-white">
+                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
+                  </div>
+                </div> 
+                <div className="p-4 bg-white">
+                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <div className="flex justify-between bg-white">
+                    <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
+                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
                   </div>
                 </div>
+                
               </div>
-            </div>
 
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
-                <div className="max-w-sm bg-white">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
-                  </div>
-                </div>
-              </div>
             </div>
+          </div>
 
         </div>
+        {/* ประกาศล่าสุด */}
 
-        <div className="relative w-full bg-white h-72">
-          <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
-            <h2 className="font-bold text-green-500 text-md">บ้านและคอนโดหรู</h2>
-          </div>
-          <div className="absolute z-40 w-1/2 text-center text-black top-3 left-1/2">
-          </div>
-          <div class="absolute w-64 h-40 z-50">
-            <div class="absolute top-2 left-0 bg-orange-500 text-white px-3 py-1 text-xs font-semibold transform -rotate-45 origin-top-left">
-              โครงการใหม่
-            </div>
-
-            <div class="absolute inset-0 bg-blue-900 text-white p-4 flex flex-col justify-center z-10">
-              <h3 class="text-lg font-bold">คอนโดใหม่</h3>
-              <p class="text-sm">รวมประกาศขายคอนโด โครงการใหม่ มือหนึ่ง</p>
-            </div>
-
-            <Image
-              src="/cafe.jpg"
-              alt="My Photo"
-              width={500}
-              height={40}
-            />
-          </div>
-        </div>
-
-         <div className="relative flex justify-between p-2 bg-white">
+{/* ประกาศคอนโดยอดนิยม */}
+        <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
             <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> ประกาศคอนโดยอดนิยม</label>
           </div>
@@ -777,39 +1012,68 @@ export default function Home() {
           </div>
         </div>
        
-        <div className="relative flex justify-center p-2 bg-white">
-          <div className="w-1/2 p-4">
+        <div className="relative flex justify-center p-2 bg-white rounded-md border-emerald-300">
+          <div className="w-1/2 p-4 border rounded-lg border-emerald-400">
             <Swiper
               modules={[Grid, Navigation]}
-              slidesPerView={3}      // จำนวนรูปต่อแถว
-              grid={{ rows: 2, fill: 'row' }} // จำนวนแถวต่อหน้า, fill:'row' ช่วยจัดเต็มแถว
-              spaceBetween={20}      // ช่องว่างระหว่างรูป
-              slidesPerGroup={3}     // จำนวนสไลด์ต่อกลุ่ม (ควรเท่ากับ slidesPerView)
-              navigation={true}         // ปุ่ม next/prev
+              slidesPerView={5}             // ลดจาก 5 → 3 (ให้รูปใหญ่ขึ้น)
+              grid={{ rows: 2, fill: 'row' }} // 2 แถว
+              spaceBetween={20}             // ช่องว่างระหว่างรูป
+              slidesPerGroup={3}            // เลื่อนทีละ 3 รูป
             >
-            {locations.map((item, i) => (
-              <SwiperSlide key={i}>
-                <div> 
-                  <div className="relative overflow-hidden transition duration-200 cursor-pointer hover:scale-110 hover:opacity-70">
+              {locationsNotify.map((item, i) => (
+                <SwiperSlide key={i}>
+                  <div className="relative overflow-hidden transition duration-200 border rounded-lg cursor-pointer w-44 h-44 hover:scale-105 hover:opacity-80">
                     <Image
                       src={item.img}
                       alt={item.title}
+                      fill
                       className="object-cover"
-                      width={500}   // กำหนดความกว้าง
-                      height={300}  // กำหนดความสูง
                     />
-                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-gradient-to-t from-black/70 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-black/40">
                       <h3 className="font-semibold">{item.title}</h3>
-                      <p className="text-xs">{item.subtitle}</p>
                     </div>
                   </div>
-                </div>
-                
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="w-full h-32 mt-5">
+              <ul className="flex flex-row justify-start gap-4 rounded-lg p-9 lg:overflow-x-auto text-md md:flex-row lg:whitespace-nowrap md:overflow-x-auto md:whitespace-nowrap">
+                <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ BTS สายหลัก</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ BTS สายสีทอง</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ MRT สายสีน้ำเงิน</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ MRT สายสีม่วง</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ MRT สายสีเหลือง</a>
+                </li>
+                <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ MRT สายสีชมพู</a>
+                </li>
+                <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ Airport Link</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้รถไฟฟ้าสายสีแดง</a>
+                </li>
+                  <li>
+                  <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ รถ BRT</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+{/* ประกาศคอนโดยอดนิยม */}
+
+
+{/* ประกาศบ้านยอดนิยม */}
 
         <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
@@ -819,42 +1083,65 @@ export default function Home() {
             <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">บ้านทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
           </div>
         </div>
-       
-        <div className="relative flex justify-center p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <Swiper
-              modules={[Grid, Navigation]}
-              slidesPerView={3}      // จำนวนรูปต่อแถว
-              grid={{ rows: 2, fill: 'row' }} // จำนวนแถวต่อหน้า, fill:'row' ช่วยจัดเต็มแถว
-              spaceBetween={20}      // ช่องว่างระหว่างรูป
-              slidesPerGroup={3}     // จำนวนสไลด์ต่อกลุ่ม (ควรเท่ากับ slidesPerView)
-              navigation={true}         // ปุ่ม next/prev
-            >
-            {locations.map((item, i) => (
+
+        <div className="relative flex justify-center p-2 bg-white rounded-md border-emerald-300">
+          <div className="w-1/2 p-4 border rounded-lg border-emerald-400">
+          <Swiper
+            modules={[Grid, Navigation]}
+            slidesPerView={4}
+            spaceBetween={30}
+            slidesPerGroup={4}
+          >
+            {locationsNotifyHome.map((item, i) => (
               <SwiperSlide key={i}>
-                <div> 
-                  <div className="relative overflow-hidden transition duration-200 cursor-pointer hover:scale-110 hover:opacity-70">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      className="object-cover"
-                      width={500}   // กำหนดความกว้าง
-                      height={300}  // กำหนดความสูง
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-gradient-to-t from-black/70 to-transparent">
-                      <h3 className="font-semibold">{item.title}</h3>
-                      <p className="text-xs">{item.subtitle}</p>
-                    </div>
+                <div className="relative w-48 h-48 overflow-hidden transition duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-80">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-black/40">
+                    <h3 className="font-semibold">{item.title}</h3>
                   </div>
                 </div>
-                
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="w-full h-32 mt-5">
+            <ul className="flex flex-row justify-start gap-4 rounded-lg p-9 lg:overflow-x-auto text-md md:flex-row lg:whitespace-nowrap md:overflow-x-auto md:whitespace-nowrap">
+              <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ BTS สายหลัก</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ BTS สายสีทอง</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ MRT สายสีน้ำเงิน</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ MRT สายสีม่วง</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ MRT สายสีเหลือง</a>
+              </li>
+              <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ MRT สายสีชมพู</a>
+              </li>
+              <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ Airport Link</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้รถไฟฟ้าสายสีแดง</a>
+              </li>
+                <li>
+                <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">บ้านใกล้ รถ BRT</a>
+              </li>
+            </ul>
+          </div>
           </div>
         </div>
-
-
+{/* ประกาศบ้านยอดนิยม */}
 
         <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
@@ -936,7 +1223,7 @@ export default function Home() {
 
         </div>
 
-              <div className="relative flex justify-between p-2 bg-white">
+        <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
             <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> Knowledge ความรู้ดีๆเกี่ยวกับที่อยู่อาศัย</label>
           </div>
@@ -979,7 +1266,7 @@ export default function Home() {
           </div>
         </div>
 
-          <div className="relative flex justify-between p-2 bg-white">
+        <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
             <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> News ข่าวอสังหาฯน่าสนใจ</label>
           </div>
@@ -1021,24 +1308,553 @@ export default function Home() {
           </Swiper>
           </div>
         </div>
+        
+        {/* PARTNERSHIP */}
+        <div className="relative flex justify-between p-2 bg-white">
+          <div className="w-1/2 p-4">
+            <label className="flex items-center justify-center gap-1 font-bold text-center text-md text-emerald-500">PARTNERSHIP</label>
+          </div>
+         
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/copper.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/bonchon.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/kfc.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/mcdonal.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/mk.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/momo.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/chester.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/santafe.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/subway.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/sushiro.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/tenjo.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/tensai.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/burgerking.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/yayoi.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/นิตยา.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/barbqueplaza.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/shabushi.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/วราภรณ์.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/afteryou.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/aka.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/netagrill.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/youandi.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/เนื้อแท้.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/coco.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/shinkanzen.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/potato.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/ชาตรามือ.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/gaga.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/teenoi.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/amazon.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/starbuck.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/jonesalad.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/guguchicken.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/choongman.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/ทองสมิธ.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/yamazaki.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start w-36 h-36">
+            <Image
+              src="/ฮาจิบัง.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/sukishi.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/swensen.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/pizzahut.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/dq.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/pizzacompany.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
+
+        <div className="relative flex justify-center gap-5 bg-white">
+          
+          <div className="flex items-start justify-start w-36 h-36">
+            <Image
+              src="/dunkind.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+          
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/fukumatcha.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/krispy.jpg"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/misterdonunt.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/beer.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+
+           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+            <Image
+              src="/สิงห์.png"
+              alt="My Photo"
+              width={500}
+              height={40}
+              className="p-2"
+            />
+          </div>
+          
+        </div>
 
         <div className="w-full text-center bg-slate-300 h-72">
           <div className="p-5"> 
-            <h2 className="text-gray-400">ลงประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ที่ไหนดี เว็บไหนดี ต้อง LivingInsider.com</h2>
-            <label>
+            <h2 className="font-bold text-gray-600">ลงประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ที่ไหนดี เว็บไหนดี ต้อง LivingInsider.com</h2>
+            <label className="text-gray-600">
               Livinginsider.com เป็นเว็บไซต์สำหรับลงประกาศขายและให้เช่าคอนโด บ้าน โดยใช้งานฟรี ไม่มีค่าใช้จ่าย ทั้งเช่าที่อยู่อาศัยในกรุงเทพฯ และทั่วประเทศ ไม่ว่าจะเช่าบ้านเป็นหลัง เช่าห้องในคอนโด ไปจนถึงประกาศหาผู้เช่า ปล่อยขาย และหาผู้ซื้อ ที่นี่คือแหล่งรวมประกาศจากผู้ซื้อขายและให้เช่าที่ดีที่สุด
               ที่เว็บ Livinginsider.com เป็นพื้นที่ลงประกาศขายและให้เช่าบ้าน คอนโดและที่ดิน ฟรี ซึ่งจะช่วยให้สามารถปล่อยขายหรือปล่อยเช่าได้อย่างสะดวก และหากใครที่กำลังมองหาบ้านหรือคอนโด ราคาถูก ไม่ว่าจะเป็น บ้านและคอนโดมือสอง หรือ บ้านและคอนโดใหม่ ในทุกทำเลยอดนิยม จึงควรเลือกใช้บริการจากเรา โดย LivingInsider.com เป็นเว็บที่รู้จักอย่างแพร่หลายและมีผู้ใช้งานเป็นจำนวนมาก เนื่องจากเหตุผลดี ๆ ดังต่อไปนี้
             </label>
 
-            <p>
+            <p className="text-gray-600">
               อยู่ในลำดับต้นๆ ของ Google เว็บไซต์ LivingInsider.com เป็นเว็บที่ขึ้นเป็นอันดับต้น ๆ เมื่อเสิร์ชหาชื่อโครงการต่าง ๆ และมีผู้เข้าเยี่ยมชมต่อวันเป็นจำนวนมาก
               ใช้งานง่าย เว็บไซต์ออกแบบให้ใช้งานง่าย ไม่ซับซ้อน พร้อมระบบที่ช่วยให้ค้นหาได้อย่างสะดวก รวดเร็ว
               ลงประกาศฟรี ไม่ว่าจะเช่าที่อยู่อาศัยในกรุงเทพฯ และทั่วประเทศ หรือประกาศอื่น ๆ ทั้งซื้อ ขาย เช่า ให้เช่า ก็ทำได้โดยไม่มีค่าใช้จ่ายเพิ่มเติม
               อัปเดตทุกวัน เว็บไซต์อัปเดตข้อมูลใหม่อยู่เสมอ และลงประกาศใหม่ ๆ ทุกวัน พร้อมด้วยข้อมูลด้านอสังหาริมทรัพย์ที่น่าสนใจ
             </p>
-            <p>
+            <p className="text-gray-600">
 
-            นอกจากการลงประกาศเช่าที่อยู่อาศัยในกรุงเทพฯ รวมถึงประกาศซื้อขายต่าง ๆ แล้ว Livinginsider.com ยังอัปเดต บทความและข่าวสารด้านอสังหาฯ ทุกวัน ไม่ว่าจะเป็น รีวิวบ้าน รีวิวคอนโด บนทำเลยอดนิยม เพื่อให้ได้ที่อยู่อาศัยที่ดีที่สุด รวมไปถึงแนวทางการตกแต่งบ้านและตกแต่งคอนโด ที่สามารถนำไปประยุกต์ใช้ได้ง่าย ๆ รวมถึงเกร็ดความรู้ด้านการลงทุน ที่จะช่วยให้ทุกคนได้ความรู้ด้านอสังหาฯ อย่างครบรอบด้าน
+              นอกจากการลงประกาศเช่าที่อยู่อาศัยในกรุงเทพฯ รวมถึงประกาศซื้อขายต่าง ๆ แล้ว Livinginsider.com ยังอัปเดต บทความและข่าวสารด้านอสังหาฯ ทุกวัน ไม่ว่าจะเป็น รีวิวบ้าน รีวิวคอนโด บนทำเลยอดนิยม เพื่อให้ได้ที่อยู่อาศัยที่ดีที่สุด รวมไปถึงแนวทางการตกแต่งบ้านและตกแต่งคอนโด ที่สามารถนำไปประยุกต์ใช้ได้ง่าย ๆ รวมถึงเกร็ดความรู้ด้านการลงทุน ที่จะช่วยให้ทุกคนได้ความรู้ด้านอสังหาฯ อย่างครบรอบด้าน
             </p>
           </div>
           

@@ -105,7 +105,7 @@ export default function TopBar(){
                 </div>
             </div>
             <div className="w-full md:block md:w-auto">
-                <ul className="flex flex-row justify-center text-xs rounded-lg md:flex-row">
+                <ul className="flex flex-row justify-center rounded-lg text-md md:flex-row">
                     <li>
                         <a href="#" className="inline-block px-3 py-2 text-white transition duration-100 bg-green-400 rounded-full hover:text-black">หน้าแรก</a>
                     </li>
@@ -125,7 +125,7 @@ export default function TopBar(){
                         <a href="#" className="relative px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">Looking <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
                     </li>
                     <li className="ms-3">
-                        <a href="#" className="flex gap-1 px-5 py-2 text-white transition duration-100 bg-orange-400 rounded-full hover:bg-orange-800"><FaPlusCircle className="text-xs"/>   ลงประกาศ</a>
+                        <a href="#" className="flex gap-1 px-5 py-2 text-white transition duration-100 bg-orange-400 rounded-full hover:bg-orange-800"><FaPlusCircle className="mt-1 text-md"/>   ลงประกาศ</a>
                     </li>
                 </ul>
             </div>
@@ -210,7 +210,7 @@ export default function TopBar(){
                 </div>
             </div>
             <div className="w-full md:block md:w-auto">
-                <ul className="flex flex-row justify-center text-xs rounded-lg md:flex-row">
+                <ul className="flex flex-row justify-center rounded-lg text-md md:flex-row">
                     <li>
                         <a href="#" className="inline-block px-3 py-2 text-black transition duration-100 bg-green-400 rounded-full hover:text-black">หน้าแรก</a>
                     </li>
@@ -230,7 +230,7 @@ export default function TopBar(){
                         <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200">Looking <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
                     </li>
                     <li className="ms-3">
-                        <a href="#" className="flex gap-1 px-5 py-2 text-black transition duration-100 bg-orange-400 rounded-full hover:bg-orange-800"><FaPlusCircle className="text-xs"/>   ลงประกาศ</a>
+                        <a href="#" className="flex gap-1 px-5 py-2 text-black transition duration-100 bg-orange-400 rounded-full hover:bg-orange-800"><FaPlusCircle className="mt-1 text-md"/>   ลงประกาศ</a>
                     </li>
                 </ul>
             </div>
