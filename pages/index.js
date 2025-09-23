@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from 'next/head';
-import { FaRegThumbsUp ,FaChevronUp,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell , FaMapMarked, FaClock, FaParking, FaBath, FaChair, FaMapPin, FaAmbulance, FaThumbsUp } from 'react-icons/fa';
+import { FaRegThumbsUp ,FaChevronUp,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell , FaMapMarked, FaClock, FaParking, FaBath, FaChair, FaMapPin, FaAmbulance, FaThumbsUp ,Fasell,FaEye } from 'react-icons/fa';
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
