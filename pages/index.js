@@ -149,7 +149,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>เว็บประกาศ หาร้านอร่อยทั่วเมือง</title>
+        <title>ร้านอร่อยทั่วไทย</title>
       </Head>
       <div className="min-h-screen bg-blue-100" > {/* parent ต้อง relative */}
         <div className="relative z-40 w-full overflow-hidden h-96">
@@ -165,26 +165,26 @@ export default function Home() {
         </div>
 
         <div className="absolute z-40 text-black transform -translate-x-1/2 -translate-y-1/2 w-2/2 rounded-xl top-64 left-1/2 p-7">
-          <h1 className="text-xl font-bold text-white whitespace-nowrap">เว็บประกาศ ขาย ให้เช่า คอนโด บ้าน ที่ดิน ยอดนิยม ดีที่สุด ลงประกาศฟรี</h1>
+          <h1 className="text-xl font-bold text-white whitespace-nowrap">เว็บประกาศ ร้านอาหารดี อาหารเด็ด ทั่วประเทศไทย ลงประกาศฟรี</h1>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col gap-4 mt-4 rounded-lg font-sm text-md md:flex-row">
                 <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">คอนโดหรู</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">ภัตตาคาร</a>
                 </li>
                 <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">เช่าคอนโด</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">อาหารติดคอนโด</a>
                 </li>
                   <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">ขายคอนโด</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">อาหารติดแหล่งท่องเที่ยว</a>
                 </li>
                 <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">เช่าบ้าน</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">อาหารดินเนอร์คู่รัก</a>
                 </li>
                   <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">ขายบ้าน</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">อาหารยอดนิยม</a>
                 </li>
                 <li>
-                  <a href="#" className="inline-block text-white hover:text-amber-500">ขายที่ดิน</a>
+                  <a href="#" className="inline-block text-white hover:text-amber-500">อาหารใหม่ๆ</a>
                 </li>
             </ul>
           </div>

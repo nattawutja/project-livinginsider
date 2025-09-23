@@ -110,13 +110,13 @@ export default function TopBar(){
                         <a href="#" className="inline-block px-3 py-2 text-white transition duration-100 bg-green-400 rounded-full hover:text-black">หน้าแรก</a>
                     </li>
                     <li className="ms-2">
-                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100 ">รายการ ขาย เช่า</a>
+                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100 ">รายการ อาหารที่นิยม</a>
                     </li>
                     <li className="mt-2">
                         <a href="#" className="relative px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">ประกาศแนะนำ <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
                     </li>
                     <li>
-                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">ขายราคาทุน</a>
+                        <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">ขายราคาถูก</a>
                     </li>
                     <li>
                         <a href="#" className="inline-block px-5 py-2 text-white transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-100">AgentClub</a>
@@ -215,13 +215,13 @@ export default function TopBar(){
                         <a href="#" className="inline-block px-3 py-2 text-black transition duration-100 bg-green-400 rounded-full hover:text-black">หน้าแรก</a>
                     </li>
                     <li className="ms-2">
-                        <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200 ">รายการ ขาย เช่า</a>
+                        <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200 ">รายการ อาหารที่นิยม</a>
                     </li>
                     <li className="mt-2">
                         <a href="#" className="relative px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200">ประกาศแนะนำ <span className="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-600 rounded-full bottom-4 right-2 border-1 animate-heartbeat">N</span></a>
                     </li>
                     <li>
-                        <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200">ขายราคาทุน</a>
+                        <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200">ขายราคาถูก</a>
                     </li>
                     <li>
                         <a href="#" className="inline-block px-5 py-2 text-black transition duration-500 rounded-md hover:text-black hover:rounded-full hover:bg-teal-200">AgentClub</a>
