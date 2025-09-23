@@ -481,6 +481,17 @@ export default function Home() {
                     </div>
                   </div>
                   
+                  <div className="flex items-center justify-start gap-4 p-2 text-gray-500 bg-white">
+                    <Image
+                      src="/เปิปพิศดาร.png"
+                      alt="My Photo"
+                      width={60}
+                      height={60}
+                      className="border-2 border-teal-400 border-solid rounded-full"
+                    />
+                    <p className="font-bold text-md">เปิปพิศดาร มาตราฐานความอร่อย</p>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -528,6 +539,17 @@ export default function Home() {
                     </div>
                   </div>
                   
+                  <div className="flex items-center justify-start gap-4 p-2 text-gray-500 bg-white">
+                    <Image
+                      src="/ปันโปร.jpg"
+                      alt="My Photo"
+                      width={60}
+                      height={60}
+                      className="border-2 border-teal-400 border-solid rounded-full"
+                    />
+                    <p className="font-bold text-md">ปันโปร</p>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -575,6 +597,17 @@ export default function Home() {
                     </div>
                   </div>
                   
+                  <div className="flex items-center justify-start gap-4 p-2 text-gray-500 bg-white">
+                    <Image
+                      src="/ชิลไปไหนไอคอน.jpg"
+                      alt="My Photo"
+                      width={60}
+                      height={60}
+                      className="border-2 border-teal-400 border-solid rounded-full"
+                    />
+                    <p className="font-bold text-md">ชิลไปไหน</p>
+                  </div>
+
                 </div>
               </div>
             </div>
