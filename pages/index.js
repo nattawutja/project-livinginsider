@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from 'next/head';
-import { FaStore,FaHome,FaBuilding,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell , FaMapMarked, FaTimesCircle, FaMousePointer, FaTimes, FaClock, FaMouse, FaTable, FaParking, FaBath, FaTabletAlt, FaChair, FaSpaceShuttle, FaDrawPolygon, FaVectorSquare, FaMapPin } from 'react-icons/fa';
+import { FaRegThumbsUp ,FaChevronUp,FaHotjar,FaChevronRight,FaChevronLeft,FaSearch,FaRegBookmark,FaBookReader, FaShoppingBag,FaShoppingBasket,FaBeer, FaDumbbell , FaMapMarked, FaClock, FaParking, FaBath, FaChair, FaMapPin, FaAmbulance, FaThumbsUp } from 'react-icons/fa';
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,11 +16,31 @@ import { Grid,Navigation, Pagination } from "swiper/modules"; // ✅ ต้อ�
 
 
 
-import { useRef,useState } from "react";
+import { useRef,useState,useEffect } from "react";
 export default function Home() {
 
   const scrollRef = useRef(null);
   const scrollRefMenu = useRef(null);
+  const scrollRefMenuNews = useRef(null);
+  const [iconStatus, setIconStatus] = useState(false);
+  const [iconStatusMenu, setIconStatusMenu] = useState(false);
+
+  useEffect(() => {
+    const handleScrollDown = () => {
+      if (window.scrollY > 400) {
+        setIconStatus(true);
+      } else {
+        setIconStatus(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollDown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollDown);
+    };
+
+  }, []);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -31,11 +51,12 @@ export default function Home() {
     }
   };
 
-  
-
   const scrollMenu = (direction) => {
+    if(direction == 'right'){
+      setIconStatusMenu(true);
+    }
+
     if (scrollRefMenu.current) {
-      console.log(scrollRefMenu.current);
       const { scrollLeft, clientWidth } = scrollRefMenu.current;
       const scrollAmount = direction === "left" ? -clientWidth / 2 : clientWidth / 2;
       scrollRefMenu.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
@@ -43,6 +64,17 @@ export default function Home() {
   };
 
 
+  const scrollMenuNews = (direction) => {
+    if (scrollRefMenuNews.current) {
+      console.log(scrollRefMenuNews.current);
+      const { scrollLeft, clientWidth } = scrollRefMenuNews.current;
+      const scrollAmount = direction === "left" ? -clientWidth / 2 : clientWidth / 2;
+      scrollRefMenuNews.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      if(scrollLeft == 0){
+       setIconStatusMenu(true);
+      }
+    }
+  };
   const categories = [
     { icon: "/cafe.png", label: "โฮมคาเฟ่" },
     { icon: "/river.png", label: "ร้านอาหารติดแม่น้ำ" },
@@ -58,15 +90,16 @@ export default function Home() {
   ];
 
   const locations = [
-    { title: "พระราม 9", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน พระราม 9", img: "/1.jpg" },
-    { title: "อโศก ทองหล่อ", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน อโศก", img: "/2.jpg" },
-    { title: "รัชดา ห้วยขวาง", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน รัชดา", img: "/3.jpg" },
-    { title: "สาทร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน สาทร", img: "/4.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "ขาย เช่า คอนโด บ้าน ที่ดิน หมอชิต", img: "/5.jpg" },
+    { title: "ชัยนาท", subtitle: "ร้านอาหารบรรยากาศดี จังหวัด ชัยนาท", img: "/1.jpg" },
+    { title: "อำนาจเจริญ", subtitle: "ร้านอาหาร ราคาโดนใจ จังหวัด อำนาจเจริญ", img: "/2.jpg" },
+    { title: "ฝั่งธนบุรี", subtitle: "ร้านอาหาร น่านั่ง ย่าน ธนบุรี", img: "/3.jpg" },
+    { title: "นครปฐม", subtitle: "ร้านอาหาร 15 ร้าน ยอดนิยม จังหวัด นครปฐม", img: "/4.jpg" },
+    { title: "แนะนำร้านอาหารเหนือ", subtitle: "ร้านอาหารเหนือ 30 ร้าน แนะนำ", img: "/5.jpg" },
+    { title: "5 อาหารเชียงใหม่", subtitle: "อร่อยเด็ดจนต้องขึ้นเหนือ", img: "/5อาหารเชียงใหม่.jpg" },
+    { title: "37 ร้านอร่อย เชียงใหม่", subtitle: "รวมรวมร้านเด็ดต้องลอง", img: "/37ร้านอาหารเชียงใหม่.jpg" },
+    { title: "17 ร้านคาว-หวาน", subtitle: "17 ร้านที่เด็กม.เกษตรห้ามพลาด", img: "/ของกินเกษตร.jpg" },
+    { title: "20 ร้าน อาหารยอดนิยม", subtitle: "ตัวเมืองเชียงใหม่", img: "/ชิลไปไหน.jpg" },
+    { title: "รวมร้านวัดบวร", subtitle: "กินเด็ด อิ่มอร่อย!", img: "/รวมร้านวัดบวร.jpg" },
   ];
 
   const locationsNotify = [
@@ -82,7 +115,7 @@ export default function Home() {
     { title: "ใกล้มหาลัย", img: "/ใกล้มหาลัย.jpg" }
   ];
 
-    const locationsNotifyHome = [
+  const locationsNotifyHome = [
     { title: "บ้านใกล้ร้านอาหาร", img: "/บ้านใกล้ร้านอาหาร.jpg" },
     { title: "บ้านมือสองใกล้ร้านอาหาร",img: "/บ้านมือสอง.jpg" },
     { title: "บ้านใกล้มหาลัย", img: "/บ้านใกล้หมาลัย.jpg" },
@@ -90,23 +123,27 @@ export default function Home() {
 
   ];
 
-
-  
   const food = [
-    { title: "พระราม 9", subtitle: "Bon Chon", img: "/bonchon.png" },
-    { title: "รัชดา ห้วยขวาง", subtitle: "Yayoi", img: "/yayoi.png" },
-    { title: "สาทร", subtitle: "KFC", img: "/kfc.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "Mc Donald", img: "/mcdonal.png" },
-    { title: "หมอชิต จตุจักร", subtitle: "Chester Grill", img: "/chester.png" },
-    { title: "หมอชิต จตุจักร", subtitle: "Momo Paradise", img: "/momo.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "Copper Buffet", img: "/copper.png" },
-    { title: "หมอชิต จตุจักร", subtitle: "Burger King", img: "/burgerking.png" },
-    { title: "หมอชิต จตุจักร", subtitle: "Tensai Buffet", img: "/tensai.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "SanteFe", img: "/santafe.png" },
-    { title: "หมอชิต จตุจักร", subtitle: "นิตยาไก่ย่าง", img: "/นิตยา.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "Tenjo", img: "/tenjo.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "Sushiro", img: "/sushiro.jpg" },
-    { title: "หมอชิต จตุจักร", subtitle: "Subway", img: "/subway.png" },
+    { subtitle: "Bon Chon", img: "/bonchon.png" },
+    { subtitle: "Yayoi", img: "/yayoi.png" },
+    { subtitle: "KFC", img: "/kfc.jpg" },
+    { subtitle: "Mc Donald", img: "/mcdonal1.png" },
+    { subtitle: "Chester Grill", img: "/chester.png" },
+    { subtitle: "Momo Paradise", img: "/momo.jpg" },
+    { subtitle: "Copper Buffet", img: "/copper.png" },
+    { subtitle: "Burger King", img: "/burgerking.png" },
+    { subtitle: "Tensai Buffet", img: "/tensai.jpg" },
+    { subtitle: "SanteFe", img: "/santafe.png" },
+    { subtitle: "นิตยาไก่ย่าง", img: "/นิตยา.jpg" },
+    { subtitle: "Tenjo", img: "/tenjo.jpg" },
+    { subtitle: "Sushiro", img: "/sushiro.jpg" },
+  ];
+
+    const foodNews = [
+    { subtitle: "เที่ยงนี้กินไรดี ? 160 เมนูอาหารตามสั่ง", img: "/เมนูตามสั่ง.jpg" },
+    { subtitle: "24 สูตรอาหารข้าวกล้องทำขาย", img: "/สูตรข้าวกล้องเดลี่เวอรี่.jpg" },
+    { subtitle: "Pepper Lunch ออกเมนูใหม่!!", img: "/Pepper-Lunch.jpg" },
+    { subtitle: "เมนู ราดข้าว ยอดนิยม", img: "/เมนูราดข้าว.jpg" }
   ];
 
   return (
@@ -153,6 +190,23 @@ export default function Home() {
           </div>
 
         </div>
+
+        {
+          iconStatus && (
+            <div className="fixed z-50 bottom-6 right-6">
+              <div className="flex items-center justify-center w-16 h-16 bg-white border-2 rounded-full shadow-lg border-emerald-400 hover:bg-emerald-400 hover:border-white group">
+                <button 
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="flex items-center justify-center w-16 h-16 rounded-full shadow-lg"
+                >
+                <FaChevronUp className="text-xl font-bold text-emerald-500 group-hover:text-white" />
+                </button>
+              </div>
+            </div>
+          )
+        }
+       
+       
 
         <div className="relative">
           <div className="absolute z-40 p-4 text-black transform -translate-x-1/2 -translate-y-1/2 bg-white border lg:w-3/4 rounded-xl top-50 left-1/2 xl:w-2/4 md:w-3/4">
@@ -210,11 +264,14 @@ export default function Home() {
         </div>
 
       
+      
       {/* ประเภทร้านอาหาร */}
         <div className="relative w-full h-72 bg-gradient-to-b from-bg-living to-white">
           <div className="absolute z-40 w-1/2 text-center top-28 right-1/2">
             <h2 className="text-green-500 ">ประเภทร้านอาหาร</h2>
+              
           </div>
+      
           <div className="absolute z-40 w-1/2 text-center text-black top-28 left-1/2">
             <div className="relative flex items-center justify-center gap-2">
               <button
@@ -277,6 +334,7 @@ export default function Home() {
               spaceBetween={20}      // ช่องว่างระหว่างรูป
               slidesPerGroup={3}     // จำนวนสไลด์ต่อกลุ่ม (ควรเท่ากับ slidesPerView)
               navigation={true}         // ปุ่ม next/prev
+              pagination={{ clickable: true }}  // <<-- เปิดไข่ปลา
             >
             {locations.map((item, i) => (
               <SwiperSlide key={i}>
@@ -303,7 +361,7 @@ export default function Home() {
         </div>
         {/* ร้านอาหารยอดนิยม */}
 
-
+ 
 
         {/* ร้านอาหารแบรนด์ต่างๆ */}
         <div className="relative w-full bg-white h-72">
@@ -314,53 +372,53 @@ export default function Home() {
             <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">ดูผู้พัฒนาทั้งหมด  <FaChevronRight className="text-blue-500" /></a>
           </div>
 
+          <div className="absolute z-40 w-1/2 text-center text-black top-28 left-1/2">
+            <div className="relative flex items-center justify-center">
+              
 
-
-                
-            <div className="absolute z-40 w-1/2 text-center text-black top-28 left-1/2">
-              <div className="relative flex items-center justify-center">
-                
-
-                <button
-                  onClick={() => scrollMenu("right")}
-                  className="p-2 text-gray-500 bg-white rounded-full"
-                >
-                  <FaChevronRight />
-                </button>
-              </div>
+              <button
+                onClick={() => scrollMenu("right")}
+                className="p-2 text-gray-500 bg-white rounded-full"
+              >
+                <FaChevronRight />
+              </button>
             </div>
+          </div>
 
-            <div className="absolute z-40 w-1/2 text-center text-black top-28 right-1/2">
-              <div className="relative flex items-center justify-center">
-                
+        {iconStatusMenu == true && (
+          <div className="absolute z-40 w-1/2 text-center text-black top-28 right-1/2">
+            <div className="relative flex items-center justify-center">
+              
 
-                <button
-                  onClick={() => scrollMenu("left")}
-                  className="p-2 text-gray-500 bg-white rounded-full"
-                >
-                  <FaChevronLeft />
-                </button>
-              </div>
+              <button
+                onClick={() => scrollMenu("left")}
+                className="p-2 text-gray-500 bg-white rounded-full"
+              >
+                <FaChevronLeft />
+              </button>
             </div>
+          </div>
+        )}
+          
 
-            <div
-              ref={scrollRefMenu}
-              className="absolute flex w-full max-w-4xl gap-4 p-4 px-5 overflow-hidden top-20 left-1/4"
-            >
-              {food.map((item, i) => (
-                <div key={i} className="flex flex-col items-center transition duration-300 cursor-pointer hover:scale-110">
-                  <div className="flex items-center justify-center w-20 h-20 gap-3 bg-white border rounded-full shadow">
-                    <Image
-                      src={item.img}
-                      alt="My Photo"
-                      width={500}
-                      height={40}
-                      className="border-2 border-teal-400 border-solid rounded-full"
-                    />
-                  </div>
-                  <p className="mt-2 text-sm text-gray-500 whitespace-nowrap">{item.subtitle}</p>
+          <div
+            ref={scrollRefMenu}
+            className="absolute flex w-full max-w-4xl gap-4 p-4 px-5 overflow-hidden top-20 left-1/4"
+          >
+            {food.map((item, i) => (
+              <div key={i} className="flex flex-col items-center transition duration-300 cursor-pointer hover:scale-110">
+                <div className="flex items-center justify-center w-20 h-20 gap-3 bg-white border rounded-full shadow">
+                  <Image
+                    src={item.img}
+                    alt="My Photo"
+                    width={500}
+                    height={40}
+                    className="border-2 border-teal-400 border-solid rounded-full"
+                  />
                 </div>
-              ))}
+                <p className="mt-2 text-sm text-gray-500 whitespace-nowrap">{item.subtitle}</p>
+              </div>
+            ))}
           </div>
 
 
@@ -389,15 +447,18 @@ export default function Home() {
                 <Image
                   src="/แคสเทลโล.jpg"
                   alt="My Photo"
-                        width={500}
+                  width={500}
                   height={100}
                   className="border rounded-lg"
                 />
+                <div className="absolute z-50 flex items-center gap-1 px-3 py-1 text-sm text-white rounded shadow-lg top-6 bg-emerald-500">
+                  <FaRegThumbsUp />RECOMMENDED
+                </div>
                 <div className="p-2 ">
                   <div className="p-4 bg-white">
                     <p className="text-lg font-bold text-black">Castello Di Bellagio Pattaya</p>
                     <div className="bg-white">
-                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 9 9 ตำบล นาจอมเทียน อำเภอสัตหีบ ชลบุรี 20250</p>
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 9 9 ตำบล นาจอมเทียน อำเภอสัตหีบ ชลบุรี</p>
                     </div>
                   </div>   
                   
@@ -416,7 +477,7 @@ export default function Home() {
                       <div className="items-start justify-start p-1 text-center border-r-2">
                     </div>
                     <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
-                      <p className="font-bold text-emerald-400">ค่อนข้างยาก</p>
+                      <p className="font-bold text-emerald-400">รถยนต์เท่านั้น</p>
                     </div>
                   </div>
                   
@@ -424,54 +485,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
-
-          <div className="p-5">
-            <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
-
-              <div className="max-w-sm bg-white rounded-lg">
-              
-                <Image
-                  src="/chocolateview1.jpg"
-                  alt="My Photo"
-                  width={500}
-                  height={150}
-                  className="border rounded-lg"
-
-                />
-                <div className="p-2 ">
-                  <div className="p-4 bg-white">
-                    <p className="text-lg font-bold text-black">ซื่อตรง เจ็มส์-บางบัวทอง</p>
-                    <div className="bg-white">
-                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
-                    </div>
-                  </div>   
-                  
-                  <div className="flex justify-center gap-2 p-3 bg-white border-y">
-                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ที่จอดรถ
-                      <p className="font-bold text-emerald-400">มี</p>
-                    </div>
-                    <div className="items-start justify-start p-1 text-center border-r-2">
-                    </div>
-                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">คะแนนรีวิว
-                      <p className="font-bold text-emerald-400">9 / 10</p>
-                    </div>
-                      <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ชั้น
-                      <p className="font-bold text-emerald-400">1</p>
-                    </div>
-                      <div className="items-start justify-start p-1 text-center border-r-2">
-                    </div>
-                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
-                      <p className="font-bold text-emerald-400">ง่าย สะดวก</p>
-                    </div>
-                  </div>
-
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-
+        
           <div className="p-5">
             <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
 
@@ -484,11 +498,14 @@ export default function Home() {
                   height={100}
                   className="border rounded-lg"
                 />
+                <div className="absolute z-50 flex items-center gap-1 px-3 py-1 text-sm text-white rounded shadow-lg top-6 bg-emerald-500">
+                  <FaRegThumbsUp />RECOMMENDED
+                </div>
                 <div className="p-2 ">
                   <div className="p-4 bg-white">
                     <p className="text-lg font-bold text-black">3 บ้าน 8 บ้าน</p>
                     <div className="bg-white">
-                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 163/1 ถนน มาเจริญ แขวงหนองค้างพลู เขตหนองแขม กรุงเทพมหานคร 10160</p>
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 163/1 ถนน มาเจริญ เขตหนองแขม กรุงเทพมหานคร</p>
                     </div>
                   </div>   
                   
@@ -507,7 +524,7 @@ export default function Home() {
                       <div className="items-start justify-start p-1 text-center border-r-2">
                     </div>
                     <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
-                      <p className="font-bold text-emerald-400">สะดวก</p>
+                      <p className="font-bold text-emerald-400">รถทุกประเภท</p>
                     </div>
                   </div>
                   
@@ -516,6 +533,52 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="p-5">
+            <div className="p-4 transition duration-200 transform bg-white border border-gray-200 cursor-pointer rounded-xl hover:shadow-lg hover:-translate-y-3">
+
+              <div className="max-w-sm bg-white rounded-lg">
+              
+                <Image
+                  src="/Zap5.jpg"
+                  alt="My Photo"
+                  width={500}
+                  height={100}
+                  className="border rounded-lg"
+                />
+                <div className="absolute z-50 flex items-center gap-1 px-3 py-1 text-sm text-white rounded shadow-lg top-6 bg-emerald-500">
+                  <FaRegThumbsUp />RECOMMENDED
+                </div>
+                <div className="p-2 ">
+                  <div className="p-4 bg-white">
+                    <p className="text-lg font-bold text-black">แซ่บนัว ครัวบ้านนาศาลายา</p>
+                    <div className="bg-white">
+                      <p className="flex gap-2 text-sm text-gray-400"><FaMapMarked className="text-gray-400" /> 150/40 ม.1 ต.ศาลายา อ.พุทธมณฑล จ.นครปฐม</p>
+                    </div>
+                  </div>   
+                  
+                  <div className="flex justify-center gap-2 p-3 bg-white border-y">
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ที่จอดรถ
+                      <p className="font-bold text-emerald-400">มี</p>
+                    </div>
+                    <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">คะแนนรีวิว
+                      <p className="font-bold text-emerald-400">9.5 / 10</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">ชั้น
+                      <p className="font-bold text-emerald-400">1</p>
+                    </div>
+                      <div className="items-start justify-start p-1 text-center border-r-2">
+                    </div>
+                    <div className="items-start justify-start p-1 text-center text-gray-400 whitespace-nowrap">การเดินทาง
+                      <p className="font-bold text-emerald-400">รถยนต์</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {/* ร้านอาหารเปิดใหม่ */}
        
@@ -672,7 +735,7 @@ export default function Home() {
                 <span className="absolute hidden px-2 py-1 mb-2 text-xs text-black bg-white rounded shadow bottom-full group-hover:block whitespace-nowrap">
                   รถไฟฟ้าสายสีแดง (Red Line)
                 </span>
-                <p className="mt-2 text-sm font-bold text-blue-900">รถไฟฟ้าสายสีแดง</p>
+                <p className="mt-2 text-sm font-bold text-blue-900 whitespace-nowrap">รถไฟฟ้าสายสีแดง</p>
               </div>
 
               <div className="relative flex flex-col items-center group">
@@ -699,172 +762,93 @@ export default function Home() {
         </div>
         {/* ไอคอนรถไฟฟ้า */}
 
-        <div className="relative w-full bg-white h-72">
-          <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
-            <h2 className="font-bold text-green-500 text-md">อสังหาฯ ใหม่แนะนำ</h2>
+       
+     
+
+        <div className="relative w-full gap-5 bg-white h-96">
+          <h2 className="font-bold text-green-500 text-md"></h2>
+             <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
+            <h2 className="font-bold text-green-500 text-md ">ค้นหาร้านอาหารจากทำเลที่คุณต้องการ</h2>
           </div>
-          <div className="absolute z-40 w-1/2 text-center text-black top-3 left-1/2">
-          </div>
-          <div className="absolute z-50 w-64 h-40">
-            <div className="absolute left-0 px-3 py-1 text-xs font-semibold text-white origin-top-left transform -rotate-45 bg-orange-500 top-2">
-              โครงการใหม่
-            </div>
-
-            <div className="absolute inset-0 z-10 flex flex-col justify-center p-4 text-white bg-blue-900">
-              <h3 className="text-lg font-bold">คอนโดใหม่</h3>
-              <p className="text-sm">รวมประกาศขายคอนโด โครงการใหม่ มือหนึ่ง</p>
-            </div>
-
-            <Image
-              src="/cafe.jpg"
-              alt="My Photo"
-              width={500}
-              height={40}
-            />
-          </div>
-        </div>
-
-
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center top-3 right-1/2">
-            <h2 className="font-bold text-green-500 text-md">ค้นหาจากทำเลที่คุณต้องการ</h2>
-            <div className="absolute flex gap-4 -translate-x-2/2 left-1/2 top-10">
-              <div className="relative overflow-hidden bg-white rounded-lg cursor-pointer h-80 w-96">
-                <Image 
-                  src="/property_near_by_index.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+          <div className="flex justify-center gap-3 top-2">
+              <div className="-translate-x-2/2 left-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-16">
+                  <Image 
+                    src="/ร้านอาหารกทม.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-              <div className="relative overflow-hidden bg-white rounded-lg cursor-pointer h-80 w-96">
-                <Image 
-                  src="/search_by_location_index.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+              <div className="-translate-x-2/2 right-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-16">
+                  <Image 
+                    src="/แม่กลอง.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-            </div>
           </div>
         </div>
 
 
-        <div className="relative flex items-center justify-center w-1/2 bg-white cursor-pointer h-72">
-
-            <Image
-              src="/ธนาคารออมสิน.jpg"
-              alt="My Photo"
-              fill
-              className="object-cover"
-            />
-        </div>
-
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-1/2">
-              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
-                <Image 
-                  src="/51098_32730.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+       
+        <div className="relative w-full gap-5 bg-white h-80">
+          <div className="flex justify-center gap-3">
+              <div className="-translate-x-2/2 left-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-5">
+                  <Image 
+                    src="/นครปฐมครับ.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
-                <Image 
-                  src="/57535_95128.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+               <div className="-translate-x-2/2 left-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-5">
+                  <Image 
+                    src="/ราชปรารภ.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-    
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
-                <Image 
-                  src="/bigsale.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+              <div className="-translate-x-2/2 right-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-5">
+                  <Image 
+                    src="/อุตรดิต.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-            </div>
           </div>
         </div>
 
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-1/2">
-              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
-                <Image 
-                  src="/2199.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+        <div className="relative w-full gap-5 bg-white h-96">
+          <div className="flex justify-center gap-3">
+              <div className="-translate-x-2/2 left-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-5">
+                  <Image 
+                    src="/รวมอาหารครอบครัว.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-              <div className="relative overflow-hidden bg-white rounded-lg aspect-[4/3] w-96">
-                <Image 
-                  src="/award.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
+              <div className="-translate-x-2/2 right-1/2">
+                <div className="relative bg-white rounded-lg cursor-pointer h-80 w-96 top-5">
+                  <Image 
+                    src="/Shopee.jpg" 
+                    alt="My Photo" 
+                    fill 
+                  />
+                </div>
               </div>
-            </div>
           </div>
         </div>
 
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
-                <Image 
-                  src="/condoandhome.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
-                <Image 
-                  src="/trueonline.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative w-full bg-white h-96">
-          <div className="absolute z-40 w-1/2 text-center right-1/2">
-            <div className="absolute flex gap-4 -translate-x-2/2 left-3/4">
-              <div className="relative overflow-hidden bg-white rounded-lg h-80 w-96">
-                <Image 
-                  src="/emoji.jpg" 
-                  alt="My Photo" 
-                  fill 
-                  className="object-cover rounded-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="relative flex justify-between p-2 bg-white">
           <div className="w-1/2 p-4">
@@ -884,31 +868,28 @@ export default function Home() {
               <div className="bg-white rounded-lg ">
               
                 <Image
-                  src="/แคสเทลโล.jpg"
+                  src="/pizza.jpg"
                   alt="My Photo"
                   width={300}
                   height={100}
                   className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
                 />
+                
                 <div className="p-2 bg-white">
-                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <p className="flex gap-2 text-lg font-bold text-black"><FaHotjar className="mt-1 text-red-600" />โปรโมชั่น ซื้อ 1 แถม 3<FaHotjar className="mt-1 text-red-600" /></p>
                   <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
-                  </div>
-                  <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> Pizza Hut ทุกสาขา</p>
                   </div>
                   <div className="flex gap-3 mt-2 bg-white">
                     <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
                     <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
-                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
                   </div>
                 </div> 
                 <div className="p-4 bg-white">
-                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <p className="text-lg font-bold text-black">฿ 299 - 499</p>
                   <div className="flex justify-between bg-white">
                     <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
-                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
+                    <FaHotjar className="text-red-600 " />
                   </div>
                 </div>
                 
@@ -925,31 +906,27 @@ export default function Home() {
               <div className="bg-white rounded-lg ">
               
                 <Image
-                  src="/แคสเทลโล.jpg"
+                  src="/mkduck.jpg"
                   alt="My Photo"
                   width={300}
                   height={100}
                   className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
                 />
                 <div className="p-2 bg-white">
-                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <p className="text-lg font-bold text-black">โปรส่งท้ายเดือน ซื้อ 1 ฟรี 2 !!</p>
                   <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
-                  </div>
-                  <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> MK เซ็นทรัลลาดพร้าว</p>
                   </div>
                   <div className="flex gap-3 mt-2 bg-white">
-                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
-                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
-                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> - </p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> -</p>
                   </div>
                 </div> 
                 <div className="p-4 bg-white">
-                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <p className="text-lg font-bold text-black">฿ 999</p>
                   <div className="flex justify-between bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
-                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
+                    <p className="flex gap-2 text-sm text-gray-400"><FaClock className="mt-1 text-gray-400" /> 23 ก.ย 2025</p>
+                    <FaHotjar className="text-red-600 " />
                   </div>
                 </div>
                 
@@ -966,31 +943,28 @@ export default function Home() {
               <div className="bg-white rounded-lg ">
               
                 <Image
-                  src="/แคสเทลโล.jpg"
+                  src="/1แถม1.jpg"
                   alt="My Photo"
                   width={300}
                   height={100}
                   className="duration-200 border rounded-lg cursor-pointer hover:scale-105 hover:opacity-70"
                 />
                 <div className="p-2 bg-white">
-                  <p className="text-lg font-bold text-black">ลดแรง โปรส่งท้ายเดือน กันยายน</p>
+                  <p className="text-lg font-bold text-black">ข้าวหน้ากุ้งเทมปุระ X2 !!</p>
                   <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
+                    <p className="flex gap-2 text-sm text-gray-700"><FaMapPin className="text-green-400" /> KAKASHI สาขา วิคตอเรียการ์เด้น</p>
                   </div>
-                  <div className="mt-2 bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaVectorSquare className="text-green-400" /> ซื่อตรง เจ็มส์-บางบัวทอง</p>
-                  </div>
+                  
                   <div className="flex gap-3 mt-2 bg-white">
-                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 16 </p>
-                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 5</p>
-                    <p className="flex gap-3 text-sm text-gray-700"><FaBath className="mt-1 text-green-400" /> 2</p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaChair className="mt-1 text-green-400" /> 4 </p>
+                    <p className="flex gap-3 text-sm text-gray-700"><FaParking className="mt-1 text-green-400" /> 3</p>
                   </div>
                 </div> 
                 <div className="p-4 bg-white">
-                  <p className="text-lg font-bold text-black">฿ 200-500</p>
+                  <p className="text-lg font-bold text-black">฿ 119</p>
                   <div className="flex justify-between bg-white">
-                    <p className="flex gap-2 text-sm text-gray-700"><FaClock className="mt-1 text-gray-400" /> สร้างเมื่อสักครู่</p>
-                    <p className="flex gap-1 text-sm text-gray-700"><FaMousePointer className="mt-1 text-gray-400" /> 1</p>
+                    <p className="flex gap-2 text-sm text-gray-400"><FaClock className="mt-1 text-gray-400" /> 21 ก.ย 2025</p>
+                    <FaHotjar className="text-red-600 " />
                   </div>
                 </div>
                 
@@ -1060,7 +1034,7 @@ export default function Home() {
                 <li>
                   <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้ Airport Link</a>
                 </li>
-                  <li>
+                <li>
                   <a href="#" className="inline-block py-2 text-blue-500 transition duration-100 bg-blue-100 rounded-full px-9 hover:bg-blue-300">ร้านอาหารใกล้รถไฟฟ้าสายสีแดง</a>
                 </li>
                   <li>
@@ -1142,172 +1116,6 @@ export default function Home() {
           </div>
         </div>
 {/* ประกาศบ้านยอดนิยม */}
-
-        <div className="relative flex justify-between p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> <FaHotjar className="text-emerald-500" /> Review คอนโด & บ้าน</label>
-            <label className="flex justify-center pr-4 text-sm text-black">สำรวจโครงการเปิดใหม่ที่น่าสนใจกันเลย</label>
-          </div>
-          <div className="w-1/2 p-4 text-center">
-            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">Review อื่นๆ (738)  <FaChevronRight className="text-blue-500" /></a>
-          </div>
-        </div>
-          
-        <div className="relative flex justify-center bg-white">
-           
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
-
-                <div className="max-w-sm bg-white rounded-lg">
-                
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                  />
-                  <div className="p-2 ">
-                    <a href="#">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                    </a>
-                    <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
-
-                <div className="max-w-sm bg-white rounded-lg">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-5">
-              <div className="p-4 transition duration-200 transform bg-white border border-gray-200 rounded-lg cursor-pointer hover:shadow-lg hover:-translate-y-3">
-                <div className="max-w-sm bg-white">
-                  <Image
-                    src="/cafe.jpg"
-                    alt="My Photo"
-                    width={500}
-                    height={40}
-                    className="rounded-lg"
-                  />
-                  <div className="p-2">
-                      <a href="#">
-                          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                      </a>
-                      <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                      
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        </div>
-
-        <div className="relative flex justify-between p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> Knowledge ความรู้ดีๆเกี่ยวกับที่อยู่อาศัย</label>
-          </div>
-          <div className="w-1/2 p-4 text-center">
-            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">Knowledge อื่นๆ (1.5K)  <FaChevronRight className="text-blue-500" /></a>
-          </div>
-        </div>
-       
-        <div className="relative flex justify-center p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <Swiper
-              modules={[Grid, Navigation]}
-              slidesPerView={3}      // จำนวนรูปต่อแถว
-              grid={{ rows: 2, fill: 'row' }} // จำนวนแถวต่อหน้า, fill:'row' ช่วยจัดเต็มแถว
-              spaceBetween={20}      // ช่องว่างระหว่างรูป
-              slidesPerGroup={3}     // จำนวนสไลด์ต่อกลุ่ม (ควรเท่ากับ slidesPerView)
-              navigation={true}         // ปุ่ม next/prev
-            >
-            {locations.map((item, i) => (
-              <SwiperSlide key={i}>
-                <div> 
-                  <div className="relative overflow-hidden transition duration-200 cursor-pointer hover:scale-110 hover:opacity-70">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      className="object-cover"
-                      width={500}   // กำหนดความกว้าง
-                      height={300}  // กำหนดความสูง
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-gradient-to-t from-black/70 to-transparent">
-                      <h3 className="font-semibold">{item.title}</h3>
-                      <p className="text-xs">{item.subtitle}</p>
-                    </div>
-                  </div>
-                </div>
-                
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          </div>
-        </div>
-
-        <div className="relative flex justify-between p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <label className="flex items-center justify-center gap-1 text-center text-md text-emerald-500"> News ข่าวอสังหาฯน่าสนใจ</label>
-          </div>
-          <div className="w-1/2 p-4 text-center">
-            <a href="#" className="inline-flex items-center justify-center gap-1 text-center text-blue-500 underline text-md">News อื่นๆ (9.9K)  <FaChevronRight className="text-blue-500" /></a>
-          </div>
-        </div>
-       
-        <div className="relative flex justify-center p-2 bg-white">
-          <div className="w-1/2 p-4">
-            <Swiper
-              modules={[Grid, Navigation]}
-              slidesPerView={3}      // จำนวนรูปต่อแถว
-              grid={{ rows: 2, fill: 'row' }} // จำนวนแถวต่อหน้า, fill:'row' ช่วยจัดเต็มแถว
-              spaceBetween={20}      // ช่องว่างระหว่างรูป
-              slidesPerGroup={3}     // จำนวนสไลด์ต่อกลุ่ม (ควรเท่ากับ slidesPerView)
-              navigation={true}         // ปุ่ม next/prev
-            >
-            {locations.map((item, i) => (
-              <SwiperSlide key={i}>
-                <div> 
-                  <div className="relative overflow-hidden transition duration-200 cursor-pointer hover:scale-110 hover:opacity-70">
-                    <Image
-                      src={item.img}
-                      alt={item.title}
-                      className="object-cover"
-                      width={500}   // กำหนดความกว้าง
-                      height={300}  // กำหนดความสูง
-                    />
-                    <div className="absolute bottom-0 left-0 right-0 p-2 text-white bg-gradient-to-t from-black/70 to-transparent">
-                      <h3 className="font-semibold">{item.title}</h3>
-                      <p className="text-xs">{item.subtitle}</p>
-                    </div>
-                  </div>
-                </div>
-                
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          </div>
-        </div>
         
         {/* PARTNERSHIP */}
         <div className="relative flex justify-between p-2 bg-white">
@@ -1353,7 +1161,7 @@ export default function Home() {
 
            <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
-              src="/mcdonal.png"
+              src="/mcdonal1.png"
               alt="My Photo"
               width={500}
               height={40}
@@ -1408,7 +1216,7 @@ export default function Home() {
 
            <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
-              src="/subway.png"
+              src="/subway1.png"
               alt="My Photo"
               width={500}
               height={40}
@@ -1483,7 +1291,7 @@ export default function Home() {
 
            <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
-              src="/barbqueplaza.jpg"
+              src="/barbqueplaza1.png"
               alt="My Photo"
               width={500}
               height={40}
@@ -1712,7 +1520,7 @@ export default function Home() {
           
           <div className="flex items-start justify-start w-36 h-36">
             <Image
-              src="/ฮาจิบัง.jpg"
+              src="/ฮาจิบัง1.png"
               alt="My Photo"
               width={500}
               height={40}
@@ -1720,7 +1528,6 @@ export default function Home() {
             />
           </div>
 
-          
           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
               src="/sukishi.jpg"
@@ -1731,7 +1538,7 @@ export default function Home() {
             />
           </div>
 
-           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
               src="/swensen.png"
               alt="My Photo"
@@ -1741,7 +1548,7 @@ export default function Home() {
             />
           </div>
 
-           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
               src="/pizzahut.png"
               alt="My Photo"
@@ -1751,7 +1558,7 @@ export default function Home() {
             />
           </div>
 
-           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
               src="/dq.png"
               alt="My Photo"
@@ -1761,7 +1568,7 @@ export default function Home() {
             />
           </div>
 
-           <div className="flex items-start justify-start cursor-pointer w-36 h-36">
+          <div className="flex items-start justify-start cursor-pointer w-36 h-36">
             <Image
               src="/pizzacompany.png"
               alt="My Photo"
@@ -1845,13 +1652,6 @@ export default function Home() {
               Livinginsider.com เป็นเว็บไซต์สำหรับลงประกาศขายและให้เช่าคอนโด บ้าน โดยใช้งานฟรี ไม่มีค่าใช้จ่าย ทั้งเช่าที่อยู่อาศัยในกรุงเทพฯ และทั่วประเทศ ไม่ว่าจะเช่าบ้านเป็นหลัง เช่าห้องในคอนโด ไปจนถึงประกาศหาผู้เช่า ปล่อยขาย และหาผู้ซื้อ ที่นี่คือแหล่งรวมประกาศจากผู้ซื้อขายและให้เช่าที่ดีที่สุด
               ที่เว็บ Livinginsider.com เป็นพื้นที่ลงประกาศขายและให้เช่าบ้าน คอนโดและที่ดิน ฟรี ซึ่งจะช่วยให้สามารถปล่อยขายหรือปล่อยเช่าได้อย่างสะดวก และหากใครที่กำลังมองหาบ้านหรือคอนโด ราคาถูก ไม่ว่าจะเป็น บ้านและคอนโดมือสอง หรือ บ้านและคอนโดใหม่ ในทุกทำเลยอดนิยม จึงควรเลือกใช้บริการจากเรา โดย LivingInsider.com เป็นเว็บที่รู้จักอย่างแพร่หลายและมีผู้ใช้งานเป็นจำนวนมาก เนื่องจากเหตุผลดี ๆ ดังต่อไปนี้
             </label>
-
-            <p className="text-gray-600">
-              อยู่ในลำดับต้นๆ ของ Google เว็บไซต์ LivingInsider.com เป็นเว็บที่ขึ้นเป็นอันดับต้น ๆ เมื่อเสิร์ชหาชื่อโครงการต่าง ๆ และมีผู้เข้าเยี่ยมชมต่อวันเป็นจำนวนมาก
-              ใช้งานง่าย เว็บไซต์ออกแบบให้ใช้งานง่าย ไม่ซับซ้อน พร้อมระบบที่ช่วยให้ค้นหาได้อย่างสะดวก รวดเร็ว
-              ลงประกาศฟรี ไม่ว่าจะเช่าที่อยู่อาศัยในกรุงเทพฯ และทั่วประเทศ หรือประกาศอื่น ๆ ทั้งซื้อ ขาย เช่า ให้เช่า ก็ทำได้โดยไม่มีค่าใช้จ่ายเพิ่มเติม
-              อัปเดตทุกวัน เว็บไซต์อัปเดตข้อมูลใหม่อยู่เสมอ และลงประกาศใหม่ ๆ ทุกวัน พร้อมด้วยข้อมูลด้านอสังหาริมทรัพย์ที่น่าสนใจ
-            </p>
             <p className="text-gray-600">
 
               นอกจากการลงประกาศเช่าที่อยู่อาศัยในกรุงเทพฯ รวมถึงประกาศซื้อขายต่าง ๆ แล้ว Livinginsider.com ยังอัปเดต บทความและข่าวสารด้านอสังหาฯ ทุกวัน ไม่ว่าจะเป็น รีวิวบ้าน รีวิวคอนโด บนทำเลยอดนิยม เพื่อให้ได้ที่อยู่อาศัยที่ดีที่สุด รวมไปถึงแนวทางการตกแต่งบ้านและตกแต่งคอนโด ที่สามารถนำไปประยุกต์ใช้ได้ง่าย ๆ รวมถึงเกร็ดความรู้ด้านการลงทุน ที่จะช่วยให้ทุกคนได้ความรู้ด้านอสังหาฯ อย่างครบรอบด้าน
